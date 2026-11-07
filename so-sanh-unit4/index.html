@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Music & Arts · So sánh · English 7</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Concept: a gig poster. Cream paper, thick ink outlines, pink / yellow / teal blocks, a spinning record. */
+:root{
+  --paper:#FFF6E5; --ink:#1B1340; --ink2:#51467E; --pink:#FF4D8D; --yellow:#FFC93C; --teal:#14B8A6; --violet:#6D4AFF;
+  --ok:#0E9F6E; --okbg:#DDF7EA; --no:#D92D5A; --nobg:#FFE1E9; --card:#FFFFFF;
+  --display:"Baloo 2","Nunito",system-ui,sans-serif; --body:"Nunito",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--body);font-size:17px;line-height:1.55;color:var(--ink);
+  background:var(--paper) radial-gradient(circle at 1px 1px,rgba(27,19,64,.09) 1.4px,transparent 1.6px) 0 0/18px 18px;
+  padding:0 max(16px,env(safe-area-inset-left)) 90px max(16px,env(safe-area-inset-right));min-height:100vh;overflow-x:hidden}
+.notes{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.notes span{position:absolute;bottom:-40px;font-size:28px;opacity:.16;animation:rise linear infinite;color:var(--violet)}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg)}}
+.wrap{position:relative;z-index:1;max-width:820px;margin:0 auto}
+/* top bar */
+.bar{position:sticky;top:0;z-index:20;margin:0 -8px;padding:10px 8px 8px;background:linear-gradient(var(--paper) 78%,transparent)}
+.bar-in{display:flex;align-items:center;gap:12px;padding:8px 12px;border:3px solid var(--ink);border-radius:16px;background:var(--yellow);box-shadow:4px 4px 0 var(--ink)}
+.bar b{font-family:var(--display);white-space:nowrap}
+.meter{flex:1;height:14px;border:2.5px solid var(--ink);border-radius:9px;background:#fff;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,var(--pink) 0 8px,#fff0 8px 11px);transition:width .3s}
+/* hero */
+.hero{display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;margin:14px 0 22px;padding:22px;border:3px solid var(--ink);border-radius:26px;background:var(--violet);color:#fff;box-shadow:7px 7px 0 var(--ink);position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;background:var(--pink);opacity:.55}
+.kick{display:inline-block;font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;background:var(--yellow);color:var(--ink);border:2.5px solid var(--ink);padding:3px 10px;border-radius:99px}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2rem,6.4vw,3.3rem);line-height:1.02;margin:10px 0 8px;text-wrap:balance;text-shadow:3px 3px 0 var(--ink)}
+.hero p{margin:0;max-width:46ch;font-weight:700}
+.teacher{display:inline-block;margin-top:12px;padding:4px 12px;border-radius:99px;background:#fff;color:var(--ink);font-weight:800;border:2.5px solid var(--ink)}
+.vinyl{width:150px;height:150px;position:relative;z-index:1;animation:spin 6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.eq{display:flex;align-items:flex-end;gap:4px;height:30px;margin-top:12px;position:relative;z-index:1}
+.eq i{width:7px;background:var(--yellow);border:2px solid var(--ink);border-radius:3px;animation:eq 1s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:-.2s}.eq i:nth-child(3){animation-delay:-.45s}.eq i:nth-child(4){animation-delay:-.7s}.eq i:nth-child(5){animation-delay:-.1s}.eq i:nth-child(6){animation-delay:-.6s}
+@keyframes eq{0%,100%{height:8px}50%{height:28px}}
+/* cheat sheet */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:22px}
+.rule{padding:12px 14px;border:3px solid var(--ink);border-radius:18px;background:var(--card);box-shadow:4px 4px 0 var(--ink)}
+.rule h3{margin:0 0 4px;font-family:var(--display);font-size:1.05rem}
+.rule code{display:block;font-family:var(--body);font-weight:800;color:var(--violet);margin-bottom:4px}
+.rule small{color:var(--ink2);font-weight:700}
+.rule:nth-child(1){background:#FFF1B8}.rule:nth-child(2){background:#CFF5EF}.rule:nth-child(3){background:#FFD9E7}.rule:nth-child(4){background:#E4DDFF}
+/* info + sections */
+.panel{padding:16px;border:3px solid var(--ink);border-radius:20px;background:var(--card);box-shadow:5px 5px 0 var(--ink);margin-bottom:22px}
+.panel h2{margin:0 0 8px;font-family:var(--display);font-size:1.25rem}
+.inf{display:grid;grid-template-columns:auto 1fr;gap:8px 12px;align-items:center}
+.inf label{font-weight:800}
+input[type=text]{width:100%;font:inherit;font-weight:700;color:var(--ink);padding:9px 12px;border:3px solid var(--ink);border-radius:12px;background:#fff;min-width:0}
+input[type=text]:focus,.opt:focus-visible,button:focus-visible,a:focus-visible{outline:4px solid var(--teal);outline-offset:2px}
+.sec{display:flex;align-items:center;gap:12px;margin:34px 0 14px;padding:12px 14px;border:3px solid var(--ink);border-radius:18px;color:var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.sec .n{flex:none;width:46px;height:46px;display:grid;place-items:center;border:3px solid var(--ink);border-radius:50%;background:#fff;font-family:var(--display);font-weight:800;font-size:1.3rem}
+.sec h2{margin:0;font-family:var(--display);font-size:1.2rem;line-height:1.2}
+.sec p{margin:0;font-weight:700;font-size:.95rem}
+.s1{background:var(--yellow)}.s2{background:#FF9DBF}.s3{background:#7BE0D2}.s4{background:#BDAEFF}
+.q{padding:14px 16px;margin-bottom:14px;border:3px solid var(--ink);border-radius:18px;background:var(--card);box-shadow:4px 4px 0 var(--ink)}
+.qh{display:flex;gap:12px;align-items:flex-start}
+.qn{flex:none;min-width:38px;height:38px;display:grid;place-items:center;border-radius:11px;border:3px solid var(--ink);background:var(--ink);color:#fff;font-family:var(--display);font-weight:800}
+.qt{font-weight:800;font-size:1.08rem;min-width:0;overflow-wrap:anywhere}
+.qt .hint{display:block;margin-top:2px;font-weight:700;font-size:.9rem;color:var(--ink2)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.opt{display:flex;gap:10px;align-items:center;text-align:left;font:inherit;font-weight:700;color:var(--ink);padding:10px 12px;border:3px solid var(--ink);border-radius:14px;background:#fff;cursor:pointer;min-width:0;transition:transform .08s}
+.opt:hover:not(:disabled){transform:translate(-1px,-1px);background:#FFF9E0}
+.opt .l{flex:none;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--ink);color:#fff;font-size:.85rem;font-weight:800}
+.opt.picked{background:#E7E1FF;box-shadow:3px 3px 0 var(--violet)}
+.opt.good{background:var(--okbg);border-color:var(--ok)}.opt.good .l{background:var(--ok)}
+.opt.bad{background:var(--nobg);border-color:var(--no)}.opt.bad .l{background:var(--no)}
+.opt.dim{opacity:.55}
+.errline{margin-top:10px;padding:10px 12px;border-radius:12px;background:#F7F4FF;border:2.5px dashed var(--violet);font-weight:800;line-height:2}
+.errline u{text-decoration:none;border-bottom:3px solid var(--violet);padding:0 2px}
+.errline sup{font-weight:800;color:var(--violet);margin-right:2px}
+.pick{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.pick .lab{font-weight:800}
+.chip{font:inherit;font-weight:800;width:42px;height:42px;border:3px solid var(--ink);border-radius:12px;background:#fff;color:var(--ink);cursor:pointer}
+.chip.picked{background:var(--violet);color:#fff}
+.chip.good{background:var(--ok);color:#fff;border-color:var(--ok)}.chip.bad{background:var(--no);color:#fff;border-color:var(--no)}
+.fixrow{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.fixrow span{font-weight:800}.fixrow input{flex:1;min-width:150px}
+.given{margin-top:8px;padding:8px 12px;border-radius:12px;background:#FFF1B8;border:2.5px solid var(--ink);font-weight:800}
+.given b{color:var(--violet)}
+input.ok{border-color:var(--ok);background:var(--okbg)}input.no{border-color:var(--no);background:var(--nobg)}
+.wbox{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px;padding:12px 14px;border:3px dashed var(--ink);border-radius:16px;background:#fff}
+.wbox b{font-family:var(--display)}
+.wbox span{padding:3px 12px;border:2.5px solid var(--ink);border-radius:99px;background:var(--yellow);font-weight:800}
+.blank{display:inline-block;width:8.5ch;max-width:46vw;vertical-align:baseline;margin:0 4px;padding:3px 8px!important;border-width:0 0 3px!important;border-radius:6px!important;background:#F7F4FF!important;text-align:center}
+.fb{display:none;margin-top:10px;padding:8px 12px;border-radius:12px;font-weight:800}
+.fb.ok{display:block;background:var(--okbg);color:#065F46}.fb.no{display:block;background:var(--nobg);color:#9F1239}.fb.miss{display:block;background:#FFF1B8;color:#7C4A03}
+.exp{display:none;margin-top:10px;padding:12px 14px;border-radius:14px;background:#F0FBFA;border:2.5px solid var(--teal);font-weight:600}
+.exp.show{display:block}
+.exp h4{margin:0 0 4px;font-family:var(--display);color:#0F766E}
+.exp p{margin:4px 0}
+.exp .ans{display:inline-block;margin-top:2px;padding:2px 10px;border-radius:8px;background:var(--ink);color:#fff;font-weight:800}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:800;font-size:1.1rem;color:#fff;background:var(--pink);padding:12px 22px;border:3px solid var(--ink);border-radius:16px;box-shadow:4px 4px 0 var(--ink);cursor:pointer;text-decoration:none}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--ink)}
+.btn.alt{background:var(--teal);color:var(--ink)}.btn.ghost{background:#fff;color:var(--ink)}
+.finish{text-align:center;margin:30px 0 10px}
+#warn{margin-bottom:12px;font-weight:800;color:#9A3412}#warn.err{color:var(--no)}
+/* result overlay */
+.ov{position:fixed;inset:0;z-index:50;display:none;align-items:flex-start;justify-content:center;padding:20px 16px;background:rgba(27,19,64,.72);overflow-y:auto}
+.ov.show{display:flex}
+.modal{width:100%;max-width:520px;margin:auto;padding:22px;border:4px solid var(--ink);border-radius:26px;background:var(--paper);box-shadow:8px 8px 0 var(--ink);text-align:center}
+.modal .em{font-size:3rem}
+.modal .who{font-weight:800;color:var(--ink2)}
+.modal .big{font-family:var(--display);font-weight:800;font-size:3.4rem;line-height:1;color:var(--violet);text-shadow:3px 3px 0 var(--ink)}
+.modal .ten{font-weight:800;font-size:1.15rem;margin:6px 0 12px}
+.brk{display:grid;gap:8px;margin:12px 0;text-align:left}
+.brk div{display:flex;justify-content:space-between;gap:10px;padding:8px 12px;border:2.5px solid var(--ink);border-radius:12px;background:#fff;font-weight:800}
+.send{margin:14px 0;padding:12px 14px;border:3px solid var(--ink);border-radius:16px;background:#fff;text-align:left}
+.send .st{font-weight:800}
+.send .st.ok{color:var(--ok)}.send .st.no{color:#9A3412}
+.send small{display:block;color:var(--ink2);font-weight:700;margin-top:6px}
+.send .acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.send .btn{font-size:.95rem;padding:9px 14px}
+textarea{width:100%;margin-top:8px;font:inherit;font-size:.88rem;padding:8px;border:2.5px solid var(--ink);border-radius:12px;background:#fff;color:var(--ink);resize:vertical}
+@media(max-width:560px){
+  .hero{grid-template-columns:1fr}.vinyl{width:96px;height:96px;position:absolute;right:14px;top:14px;opacity:.9}
+  .opts{grid-template-columns:1fr}.inf{grid-template-columns:1fr}
+  body{font-size:16px}
+}
+@media(prefers-reduced-motion:reduce){.vinyl,.eq i,.notes span{animation:none}}
+</style>
+</head>
+<body>
+<div class="notes" id="notes" aria-hidden="true"></div>
+<div class="wrap">
+  <div class="bar"><div class="bar-in"><b id="chip">🎵 0/25</b><div class="meter"><i id="fill"></i></div><b id="tchip">Unit 4</b></div></div>
+
+  <header class="hero">
+    <div>
+      <span class="kick">English 7 · Unit 4 · Music and Arts</span>
+      <h1>As… as, the same as, like &amp; different from</h1>
+      <p>25 câu ôn tập so sánh: trắc nghiệm, sửa lỗi sai, viết lại câu và điền từ. Nộp bài xong, kết quả được gửi cho cô giáo.</p>
+      <span class="teacher">👩‍🏫 Ms. Kim Anh</span>
+      <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+    <svg class="vinyl" viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="100" r="96" fill="#1B1340"/><circle cx="100" cy="100" r="80" fill="none" stroke="#3A2F6E" stroke-width="2"/>
+      <circle cx="100" cy="100" r="68" fill="none" stroke="#3A2F6E" stroke-width="2"/><circle cx="100" cy="100" r="56" fill="none" stroke="#3A2F6E" stroke-width="2"/>
+      <circle cx="100" cy="100" r="34" fill="#FFC93C" stroke="#fff" stroke-width="3"/><circle cx="100" cy="100" r="6" fill="#1B1340"/>
+      <path d="M100 66 a34 34 0 0 1 34 34" stroke="#FF4D8D" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M40 60 A70 70 0 0 1 80 32" stroke="#fff" stroke-opacity=".35" stroke-width="6" fill="none" stroke-linecap="round"/>
+    </svg>
+  </header>
+
+  <section class="rules" aria-label="Ghi nhớ nhanh">
+    <div class="rule"><h3>Bằng nhau</h3><code>as + adj/adv + as</code><small>Her voice is as sweet as honey. Phủ định: not as … as.</small></div>
+    <div class="rule"><h3>Giống hệt</h3><code>the same (+ N) + as</code><small>My guitar is the same as yours.</small></div>
+    <div class="rule"><h3>Giống như</h3><code>like + N / pronoun</code><small>She sings like a star.</small></div>
+    <div class="rule"><h3>Khác với</h3><code>different from + N</code><small>Rock is different from folk.</small></div>
+  </section>
+
+  <section class="panel"><h2>👤 Thông tin học sinh</h2>
+    <div class="inf"><label for="stName">Họ và tên</label><input id="stName" type="text" autocomplete="name" placeholder="Nguyễn Văn A"><label for="stClass">Lớp</label><input id="stClass" type="text" autocomplete="off" placeholder="7A1"></div>
+  </section>
+
+  <main id="quiz"></main>
+
+  <div class="finish"><div id="warn"></div><button class="btn" id="subBtn" type="button">🎤 Nộp bài &amp; gửi cho cô giáo</button></div>
+</div>
+
+<div class="ov" id="ov"><div class="modal">
+  <div class="em" id="rEm">🏆</div><div class="who" id="rWho"></div>
+  <div class="big" id="rBig">0/25</div><div class="ten" id="rTen"></div>
+  <div class="brk" id="rBrk"></div><div id="rNote" style="font-weight:700"></div>
+  <div class="send"><div class="st" id="sendSt">⏳ Đang gửi kết quả cho cô giáo…</div>
+    <small>Địa chỉ nhận: kimanh210203@gmail.com</small>
+    <div id="fallback" hidden>
+      <small id="fbNote"></small>
+      <div class="acts"><a class="btn alt" id="mailBtn" href="#">✉️ Mở email để gửi</a><button class="btn ghost" id="copyBtn" type="button">📋 Sao chép kết quả</button></div>
+      <textarea id="mailText" readonly rows="6"></textarea>
+    </div>
+  </div>
+  <button class="btn" id="reviewBtn" type="button">📖 Xem đáp án &amp; giải thích</button>
+</div></div>
+
+<script>
+const ADDR='kimanh210203@gmail.com',TITLE='Ôn tập so sánh - Tiếng Anh 7 - Unit 4';
+/* ================= DATA ================= */
+const MCQ=[
+ {q:'Her voice is as _____ as an angel’s.',o:['beautiful','more beautiful','beautifully','most beautiful'],c:0,
+  e:'So sánh bằng: <b>as + tính từ + as</b>. “voice” là danh từ nên cần tính từ <b>beautiful</b>. more / most dùng cho so sánh hơn / nhất, còn beautifully là trạng từ.'},
+ {q:'This painting is not _____ expensive as that one.',o:['as','more','than','like'],c:0,
+  e:'Phủ định của so sánh bằng: <b>not as + tính từ + as</b> (không … bằng). Câu có “as that one” ở cuối nên chỗ trống điền <b>as</b>.'},
+ {q:'My guitar is the same _____ yours.',o:['as','like','with','to'],c:0,
+  e:'Cấu trúc <b>the same (+ danh từ) + as</b> = giống hệt như. Không dùng like, with hay to sau “the same”.'},
+ {q:'Water puppetry is different _____ other kinds of puppet shows.',o:['from','as','like','with'],c:0,
+  e:'Cụm cố định <b>different from</b> = khác với.'},
+ {q:'Lan sings _____ a professional singer.',o:['like','as','than','from'],c:0,
+  e:'<b>like + danh từ</b> = giống như, như. Lan hát nghe giống một ca sĩ chuyên nghiệp nên dùng <b>like</b>.'},
+ {q:'Tom plays the guitar _____ well _____ Nam. They are both very good.',o:['as – as','so – than','more – than','the same – like'],c:0,
+  e:'Hai bạn giỏi như nhau → so sánh bằng với trạng từ: <b>as well as</b>.'},
+ {q:'Our school concert this year was the same _____ last year’s.',o:['as','like','than','from'],c:0,
+  e:'<b>the same as</b> + danh từ / sở hữu cách (last year’s) = giống như.'},
+ {q:'Which sentence is correct?',o:['Her dress is the same like mine.','Her dress is the same as mine.','Her dress is same as mine.','Her dress is same like mine.'],c:1,
+  e:'Đúng là <b>the same as</b>. “the same like” sai giới từ, còn “same” thiếu mạo từ <b>the</b>.'},
+ {q:'Which sentence is correct?',o:['The pop song is as popular than the folk song.','The pop song is as popular as the folk song.','The pop song is as more popular as the folk song.','The pop song is popular as the folk song.'],c:1,
+  e:'So sánh bằng đầy đủ: <b>as + tính từ + as</b>. Không dùng than hay more trong cấu trúc này, và không được bỏ as đầu tiên.'},
+ {q:'The two paintings have _____ style. They look alike.',o:['the same','same','like','as'],c:0,
+  e:'<b>the same + danh từ</b> (the same style) = cùng một phong cách. Thiếu “the” là sai, và ở đây chưa so sánh với vật thứ ba nên không cần “as”.'},
+];
+const ERR=[
+ {parts:['Mai’s painting is','the same like','Lan’s','painting.'],w:1,fix:['the same as','same as','as'],show:'the same as',
+  e:'“the same” đi với <b>as</b>, không đi với like. Sửa: <b>the same as</b>.'},
+ {parts:['Water puppetry','is','different with','other forms of art.'],w:2,fix:['different from'],show:'different from',
+  e:'Giới từ đúng của different là <b>from</b>. Sửa: <b>different from</b>.'},
+ {parts:['Hoa dances','as beautiful','as a ballerina','does.'],w:1,fix:['as beautifully','beautifully'],show:'as beautifully',
+  e:'Bổ nghĩa cho động từ “dances” cần <b>trạng từ</b> beautifully. Sửa: <b>as beautifully (as)</b>.'},
+ {parts:['My guitar','costs','the same','than your guitar.'],w:3,fix:['as your guitar','as yours','as your one'],show:'as your guitar',
+  e:'Sau <b>the same</b> dùng <b>as</b>, không dùng than (than chỉ dùng trong so sánh hơn). Sửa: <b>as your guitar</b>.'},
+ {parts:['Tom’s drawing','is not','as good','than Nam’s.'],w:3,fix:['as nam’s','as nam','as nam’s drawing'],show:'as Nam’s',
+  e:'Cấu trúc phủ định <b>not as … as</b>: sau “as good” phải là <b>as</b>, không phải than. Sửa: <b>as Nam’s</b>.'},
+];
+const RW=[
+ {s:'Her dress is blue. My dress is blue.',st:'Her dress is the same …',acc:['her dress is the same color as mine','her dress is the same colour as mine','her dress is the same color as my dress','her dress is the same colour as my dress','her dress is the same as mine','her dress is the same as my dress'],
+  show:'Her dress is the same colour as mine.',e:'Hai chiếc váy cùng màu xanh → <b>the same colour as</b> + mine (= my dress).'},
+ {s:'Tom plays the piano well. Ben plays the piano well too.',st:'Tom plays the piano as well …',acc:['tom plays the piano as well as ben','tom plays the piano as well as ben does'],
+  show:'Tom plays the piano as well as Ben.',e:'Hai bạn chơi giỏi như nhau → <b>as well as</b> + tên người còn lại.'},
+ {s:'This song isn’t the same as that one.',st:'This song is …',acc:['this song is different from that one','this song is different from that song','this song is different from that one song'],
+  show:'This song is different from that one.',e:'<b>not the same as</b> = <b>different from</b>: hai cấu trúc có cùng ý nghĩa.'},
+ {s:'The guitar is more expensive than the violin.',st:'The violin is not …',acc:['the violin is not as expensive as the guitar','the violin is not so expensive as the guitar','the violin is not as expensive as the guitar is'],
+  show:'The violin is not as expensive as the guitar.',e:'Đảo hai danh từ và đổi sang <b>not as + tính từ + as</b>: đàn violin rẻ hơn = không đắt bằng đàn guitar.'},
+ {s:'She dances in the way a ballerina does.',st:'She dances …',acc:['she dances like a ballerina'],
+  show:'She dances like a ballerina.',e:'<b>like + danh từ</b> = giống như. Dùng like cho gọn: She dances <b>like</b> a ballerina.'},
+];
+const FILL=[
+ {a:'Tom’s drawing is as good',b:'mine.',acc:['as'],e:'<b>as … as</b>: as good <b>as</b> mine (bằng của mình).'},
+ {a:'My taste in music is different',b:'my sister’s.',acc:['from'],e:'Cụm cố định <b>different from</b>.'},
+ {a:'These two singers have the',b:'voice. I can’t tell them apart.',acc:['same'],e:'<b>the same + danh từ</b>: cùng một giọng hát.'},
+ {a:'He dances',b:'a professional. He is very talented.',acc:['like'],e:'<b>like + danh từ</b> = giống như (nhảy như một vũ công chuyên nghiệp).'},
+ {a:'Water puppetry is',b:'from circus. It uses puppets on water.',acc:['different'],e:'<b>different from</b> = khác với.'},
+];
+const SECS=[
+ {k:'mcq',n:'1',cls:'s1',t:'Multiple choice',d:'Chọn đáp án đúng nhất. Câu 1 – 10.',short:'Trắc nghiệm'},
+ {k:'err',n:'2',cls:'s2',t:'Error correction',d:'Chọn phần sai (A – D) rồi gõ cách sửa đúng. Câu 11 – 15.',short:'Sửa lỗi'},
+ {k:'rw',n:'3',cls:'s3',t:'Sentence transformation',d:'Viết lại câu, giữ nguyên nghĩa. Gõ cả câu rồi chuyển sang câu tiếp theo. Câu 16 – 20.',short:'Viết lại câu'},
+ {k:'fill',n:'4',cls:'s4',t:'Fill in the blanks',d:'Điền một từ trong khung vào chỗ trống. Câu 21 – 25.',short:'Điền từ'},
+];
+/* ================= helpers ================= */
+const $=id=>document.getElementById(id),L='ABCD';
+function norm(v){let s=(v||'').toLowerCase().replace(/[‘’ʼ`´]/g,"'");
+  s=s.replace(/\bisn't\b/g,'is not').replace(/\baren't\b/g,'are not').replace(/\bdoesn't\b/g,'does not').replace(/\bcolour\b/g,'color').replace(/-/g,' ');
+  return s.replace(/[.,!?;:"]/g,' ').replace(/'/g,"’").replace(/\s+/g,' ').trim();}
+const normList=a=>a.map(norm);
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const X=[];let num=0,GRADED=false,confirmed=false,sent=false,score=0;const secScore=[0,0,0,0],secTot=[10,5,5,5],T0=Date.now();
+const sel={};
+/* ================= render ================= */
+(function(){
+  const Q=$('quiz');
+  SECS.forEach((S,si)=>{
+    Q.insertAdjacentHTML('beforeend','<div class="sec '+S.cls+'"><div class="n">'+S.n+'</div><div><h2>'+S.t+'</h2><p>'+S.d+'</p></div></div>');
+    if(S.k==='fill')Q.insertAdjacentHTML('beforeend','<div class="wbox"><b>🎼 Word box:</b><span>as</span><span>like</span><span>same</span><span>different</span><span>from</span></div>');
+    if(S.k==='mcq')MCQ.forEach(m=>{
+      num++;const order=shuffle([0,1,2,3]),k='m'+num,c=document.createElement('div');c.className='q';
+      c.innerHTML='<div class="qh"><div class="qn">'+num+'</div><div class="qt">'+esc(m.q).replace(/_{3,}/g,'<span style="display:inline-block;min-width:54px;border-bottom:3px solid var(--ink)"></span>')+'</div></div>'+
+        '<div class="opts">'+order.map((oi,p)=>'<button type="button" class="opt" data-p="'+p+'"><span class="l">'+L[p]+'</span><span>'+esc(m.o[oi])+'</span></button>').join('')+'</div>'+
+        '<div class="fb" id="fb'+k+'"></div><div class="exp" id="ex'+k+'"></div>';
+      Q.appendChild(c);const right=order.indexOf(m.c);
+      c.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{if(GRADED)return;sel[k]=+b.dataset.p;c.querySelectorAll('.opt').forEach(x=>x.classList.toggle('picked',x===b));prog();});
+      X.push({t:'mcq',k,c,si,num,right,txt:order.map(oi=>m.o[oi]),e:m.e});
+    });
+    if(S.k==='err')ERR.forEach(m=>{
+      num++;const k='e'+num,c=document.createElement('div');c.className='q';
+      const sent=m.parts.map((p,i)=>'<sup>('+L[i]+')</sup><u>'+esc(p)+'</u>').join(' ');
+      c.innerHTML='<div class="qh"><div class="qn">'+num+'</div><div class="qt">Tìm và sửa lỗi sai trong câu.<span class="hint">Chọn phần sai, rồi gõ cách sửa.</span></div></div>'+
+        '<div class="errline">'+sent+'</div>'+
+        '<div class="pick"><span class="lab">Phần sai:</span>'+[0,1,2,3].map(i=>'<button type="button" class="chip" data-i="'+i+'">'+L[i]+'</button>').join('')+'</div>'+
+        '<div class="fixrow"><span>Sửa thành:</span><input type="text" id="i'+k+'" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="gõ phần sửa đúng…"></div>'+
+        '<div class="fb" id="fb'+k+'"></div><div class="exp" id="ex'+k+'"></div>';
+      Q.appendChild(c);const inp=c.querySelector('input');
+      c.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{if(GRADED)return;sel[k]=+b.dataset.i;c.querySelectorAll('.chip').forEach(x=>x.classList.toggle('picked',x===b));prog();});
+      inp.addEventListener('input',prog);
+      X.push({t:'err',k,c,si,num,m,inp});
+    });
+    if(S.k==='rw')RW.forEach(m=>{
+      num++;const k='r'+num,c=document.createElement('div');c.className='q';
+      c.innerHTML='<div class="qh"><div class="qn">'+num+'</div><div class="qt">Rewrite the sentence.<span class="hint">Giữ nguyên nghĩa của câu gốc.</span></div></div>'+
+        '<div class="given">📝 '+esc(m.s)+'</div><div class="given" style="background:#E7E1FF">➡️ Bắt đầu: <b>'+esc(m.st)+'</b></div>'+
+        '<div class="fixrow"><input type="text" id="i'+k+'" autocomplete="off" spellcheck="false" autocapitalize="off" placeholder="gõ cả câu hoàn chỉnh vào đây…"></div>'+
+        '<div class="fb" id="fb'+k+'"></div><div class="exp" id="ex'+k+'"></div>';
+      Q.appendChild(c);const inp=c.querySelector('input');inp.addEventListener('input',prog);
+      X.push({t:'rw',k,c,si,num,m,inp});
+    });
+    if(S.k==='fill')FILL.forEach(m=>{
+      num++;const k='f'+num,c=document.createElement('div');c.className='q';
+      c.innerHTML='<div class="qh"><div class="qn">'+num+'</div><div class="qt">'+esc(m.a)+' <input class="blank" type="text" id="i'+k+'" autocomplete="off" spellcheck="false" autocapitalize="off" aria-label="Câu '+num+'"> '+esc(m.b)+'</div></div>'+
+        '<div class="fb" id="fb'+k+'"></div><div class="exp" id="ex'+k+'"></div>';
+      Q.appendChild(c);const inp=c.querySelector('input');inp.addEventListener('input',prog);
+      X.push({t:'fill',k,c,si,num,m,inp});
+    });
+  });
+  prog();
+  const N=$('notes'),G=['♪','♫','♬','🎨','🎻','🎸','🥁','🎤'];
+  for(let i=0;i<14;i++){const s=document.createElement('span');s.textContent=G[i%G.length];s.style.left=(Math.random()*96)+'%';s.style.animationDuration=(14+Math.random()*18)+'s';s.style.animationDelay=(-Math.random()*20)+'s';s.style.fontSize=(20+Math.random()*22)+'px';N.appendChild(s);}
+})();
+function isDone(e){
+  if(e.t==='mcq')return sel[e.k]!==undefined;
+  if(e.t==='err')return sel[e.k]!==undefined&&e.inp.value.trim()!=='';
+  return e.inp.value.trim()!=='';
+}
+function nDone(){return X.filter(isDone).length;}
+function prog(){const n=nDone();$('chip').textContent='🎵 '+n+'/25';$('fill').style.width=(n/25*100)+'%';}
+/* ================= grading ================= */
+function setFb(k,cls,html){const f=$('fb'+k);f.className='fb '+cls;f.innerHTML=html;}
+function setExp(k,e,ans){const x=$('ex'+k);x.innerHTML='<h4>💡 Giải thích</h4><p>'+e+'</p>'+(ans?'<span class="ans">✅ Đáp án: '+ans+'</span>':'');x.classList.add('show');}
+function gradeAll(){
+  GRADED=true;
+  X.forEach(e=>{
+    let ok=false,mine='',right='';
+    if(e.t==='mcq'){
+      const j=sel[e.k],has=j!==undefined;ok=has&&j===e.right;mine=has?L[j]+'. '+e.txt[j]:'(bỏ trống)';right=L[e.right]+'. '+e.txt[e.right];
+      e.c.querySelectorAll('.opt').forEach(x=>{x.disabled=true;const p=+x.dataset.p;x.classList.remove('picked');x.classList.add(p===e.right?'good':(has&&p===j)?'bad':'dim');});
+      setFb(e.k,ok?'ok':has?'no':'miss',ok?'✅ Chính xác!':(has?'❌ Chưa đúng':'⚪ Con chưa trả lời'));
+      setExp(e.k,e.e,esc(right));
+    }else if(e.t==='err'){
+      const j=sel[e.k],has=j!==undefined,v=e.inp.value.trim(),partOK=has&&j===e.m.w,fixOK=v!==''&&normList(e.m.fix).includes(norm(v));
+      ok=partOK&&fixOK;mine=(has?'phần '+L[j]:'chưa chọn phần sai')+' / '+(v||'(bỏ trống)');right='phần '+L[e.m.w]+' → '+e.m.show;
+      e.inp.readOnly=true;e.inp.classList.add(fixOK?'ok':'no');
+      e.c.querySelectorAll('.chip').forEach(x=>{const i=+x.dataset.i;x.disabled=true;x.classList.remove('picked');if(i===e.m.w)x.classList.add('good');else if(has&&i===j)x.classList.add('bad');});
+      setFb(e.k,ok?'ok':(has||v?'no':'miss'),ok?'✅ Chính xác! Con tìm đúng lỗi và sửa đúng.':'❌ Chưa đúng — '+(partOK?'con chọn đúng phần sai nhưng sửa chưa đúng.':'phần sai là <b>'+L[e.m.w]+'</b>.'));
+      setExp(e.k,e.e,'phần '+L[e.m.w]+' → '+esc(e.m.show));
+    }else{
+      const v=e.inp.value.trim();ok=v!==''&&normList(e.t==='rw'?e.m.acc:e.m.acc).includes(norm(v));mine=v||'(bỏ trống)';right=e.t==='rw'?e.m.show:e.m.acc[0];
+      e.inp.readOnly=true;e.inp.classList.add(ok?'ok':'no');
+      setFb(e.k,ok?'ok':(v?'no':'miss'),ok?'✅ Chính xác!':(v?'❌ Chưa đúng':'⚪ Con chưa trả lời'));
+      setExp(e.k,e.m.e,esc(right));
+    }
+    if(ok){score++;secScore[e.si]++;}
+    e.res={num:e.num,ok,mine,right};
+  });
+}
+/* ================= report + sending ================= */
+function report(){
+  const name=$('stName').value.trim(),cls=$('stClass').value.trim(),sc10=(score*10/25).toFixed(2).replace(/\.?0+$/,'');
+  const mins=Math.max(1,Math.round((Date.now()-T0)/60000)),d=new Date(),p=n=>(n<10?'0':'')+n;
+  const when=p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear()+' '+p(d.getHours())+':'+p(d.getMinutes());
+  const wrong=X.filter(e=>!e.res.ok).map(e=>e.res);
+  const head=['KẾT QUẢ '+TITLE.toUpperCase(),'Học sinh: '+name,'Lớp: '+cls,'Điểm: '+sc10+'/10 ('+score+'/25 câu đúng)','Thời gian làm bài: khoảng '+mins+' phút','Nộp lúc: '+when,'',
+    'Theo phần: '+SECS.map((S,i)=>S.short+' '+secScore[i]+'/'+secTot[i]).join(' · ')].join('\n');
+  const full=head+'\n\nCâu sai / bỏ trống ('+wrong.length+'):\n'+(wrong.length?wrong.map(r=>'- Câu '+r.num+': trả lời '+r.mine+' → đúng '+r.right.replace(/<[^>]+>/g,'')).join('\n'):'Không có — làm đúng hết!');
+  const short=head+'\n\nCâu sai / bỏ trống: '+(wrong.length?wrong.map(r=>r.num).join(', '):'không có');
+  return {full,short,sc10,name,cls,mins,when,wrong,secs:SECS.map((S,i)=>S.short+': '+secScore[i]+'/'+secTot[i]).join(' | ')};
+}
+async function sendOnline(R){
+  const ctl=new AbortController(),tm=setTimeout(()=>ctl.abort(),15000);
+  try{
+    const r=await fetch('https://formsubmit.co/ajax/'+ADDR,{method:'POST',signal:ctl.signal,headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({_subject:'Kết quả ôn tập so sánh Unit 4 - '+R.name+' - '+(R.cls||'')+' - '+R.sc10+'/10',_template:'table',_captcha:'false',
+        'Học sinh':R.name,'Lớp':R.cls||'(không ghi)','Điểm':R.sc10+'/10 ('+score+'/25)','Theo phần':R.secs,'Thời gian':'khoảng '+R.mins+' phút','Nộp lúc':R.when,
+        'Câu sai':R.wrong.length?R.wrong.map(w=>'Câu '+w.num+': '+w.mine+' → '+w.right.replace(/<[^>]+>/g,'')).join(' ; '):'Không có'})});
+    clearTimeout(tm);const j=await r.json().catch(()=>({}));
+    return r.ok&&(j.success===true||j.success==='true');
+  }catch(e){clearTimeout(tm);return false;}
+}
+function showFallback(R,why){
+  $('fallback').hidden=false;$('fbNote').textContent=why;$('mailText').value=R.full;
+  const mk=b=>'mailto:'+ADDR+'?subject='+encodeURIComponent('Ket qua on tap so sanh Unit 4 - '+R.name+' - '+(R.cls||'')+' - '+R.sc10+'/10')+'&body='+encodeURIComponent(b);
+  let h=mk(R.full);if(h.length>1900)h=mk(R.short);$('mailBtn').href=h;
+}
+async function submit(){
+  const R=report(),i=score/25>=.9?0:score/25>=.7?1:score/25>=.5?2:3;
+  const M=[['🏆','Xuất sắc! Con nắm cấu trúc so sánh rất vững!'],['🌟','Rất tốt! Con xem lại các câu sai ở phần giải thích nhé.'],['💪','Khá rồi! Con đọc kĩ giải thích rồi làm lại các câu sai nhé.'],['💖','Đừng nản nhé con! Đọc kĩ ghi nhớ ở đầu bài rồi làm lại, lần sau sẽ tiến bộ.']][i];
+  $('rEm').textContent=M[0];$('rWho').textContent=R.name+(R.cls?' · Lớp '+R.cls:'');$('rBig').textContent=score+'/25';$('rTen').textContent='⭐ '+R.sc10+' / 10 điểm';
+  $('rBrk').innerHTML=SECS.map((S,j)=>'<div><span>'+S.short+'</span><b>'+secScore[j]+'/'+secTot[j]+'</b></div>').join('');$('rNote').textContent=M[1];
+  $('ov').classList.add('show');$('mailText').value=R.full;
+  $('subBtn').textContent='📧 Xem lại kết quả';
+  if(sent)return;sent=true;
+  const st=$('sendSt');st.className='st';st.textContent='⏳ Đang gửi kết quả cho cô giáo…';
+  const ok=await sendOnline(R);
+  if(ok){st.className='st ok';st.textContent='✅ Đã gửi kết quả cho cô giáo!';showFallback(R,'Nếu cô chưa nhận được, con có thể gửi thêm bằng một trong hai nút dưới đây.');$('fallback').hidden=true;
+    const more=document.createElement('small');more.innerHTML='Cần gửi lại? <a href="#" id="resend">Bấm vào đây</a>.';st.parentNode.insertBefore(more,$('fallback'));$('resend').onclick=ev=>{ev.preventDefault();$('fallback').hidden=false;more.remove();};}
+  else{st.className='st no';st.textContent='⚠️ Chưa gửi tự động được (có thể do mạng). Con hãy gửi bằng nút dưới đây.';showFallback(R,'Bấm “Mở email để gửi”, hoặc sao chép kết quả rồi dán vào email / Zalo gửi cô nhé.');}
+}
+$('subBtn').onclick=function(){
+  if(GRADED){$('ov').classList.add('show');return;}
+  const w=$('warn');
+  if(!$('stName').value.trim()){w.className='err';w.textContent='⚠️ Con hãy nhập Họ và tên ở đầu bài trước khi nộp nhé.';$('stName').focus();$('stName').scrollIntoView({behavior:'smooth',block:'center'});return;}
+  const left=25-nDone();
+  if(left>0&&!confirmed){confirmed=true;w.className='';w.textContent='Con còn '+left+' câu chưa làm. Bấm “Nộp bài” lần nữa nếu muốn nộp luôn, hoặc cuộn lên làm tiếp nhé.';return;}
+  w.textContent='';gradeAll();submit();
+};
+$('reviewBtn').onclick=()=>{$('ov').classList.remove('show');$('quiz').scrollIntoView({behavior:'smooth'});};
+$('copyBtn').onclick=function(){
+  const t=$('mailText'),done=()=>{$('fbNote').textContent='✅ Đã sao chép! Con dán vào email hoặc Zalo gửi cô nhé.';};
+  try{navigator.clipboard.writeText(t.value).then(done,()=>{t.select();try{document.execCommand('copy');done();}catch(e){}});}catch(e){t.select();try{document.execCommand('copy');done();}catch(e2){}}
+};
+</script>
+</body>
+</html>
