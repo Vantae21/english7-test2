@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Listening · Unit 4 Music and Arts</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#2A1F4D;--ink2:#5D5486;--paper:#FBF8FF;--lav:#EDE7FF;--line:#D9CFF7;
+  --mag:#E0457B;--cob:#3B5BDB;--sun:#F5A524;--teal:#14A38B;
+  --ok:#12A366;--ok-bg:#DCF8EA;--no:#E5486F;--no-bg:#FFE3EA;
+  --a1:linear-gradient(135deg,#F7A8C8,#E0457B);
+  --a2:linear-gradient(135deg,#9DB4FF,#3B5BDB);
+  --a3:linear-gradient(135deg,#FFD98A,#F08C00);
+  --a4:linear-gradient(135deg,#7FE3CF,#14A38B);
+  --shadow:rgba(42,31,77,.16);--tbh:96px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;font-size:18px;font-weight:600;line-height:1.65;color:var(--ink);min-height:100vh;overflow-x:hidden;
+  background:
+   radial-gradient(900px 500px at 8% -5%,#FFE1EC 0,transparent 60%),
+   radial-gradient(800px 520px at 100% 8%,#DCE6FF 0,transparent 60%),
+   radial-gradient(900px 600px at 50% 105%,#DDF6EE 0,transparent 60%),var(--paper)}
+button,select,input{font-family:inherit}
+button{cursor:pointer}
+h1,h2,h3,.qn,.pchip,.btn{font-family:'Fredoka','Nunito',sans-serif}
+.deco{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.note{position:absolute;bottom:-60px;opacity:.16;color:var(--cob);animation:rise linear infinite}
+@keyframes rise{to{transform:translateY(-115vh) rotate(25deg)}}
+@media(prefers-reduced-motion:reduce){.note,.rmb .ic{animation:none!important}.note{bottom:auto;top:20%}}
+.wrap{position:relative;z-index:2;max-width:880px;margin:0 auto;padding:0 14px 110px}
+
+/* thanh trên */
+.topbar{position:sticky;top:0;z-index:60;padding:8px 0 6px}
+.topbar-in{padding:9px 14px;border-radius:22px;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:3px solid #fff;box-shadow:0 8px 24px var(--shadow)}
+.prog-row{display:flex;align-items:center;gap:10px}
+.pchip{flex:none;padding:0 12px;border-radius:99px;font-weight:600;font-size:1rem;color:#fff;background:var(--a3)}
+.pchip.s2{background:var(--a2)}
+.staff{position:relative;flex:1;height:22px;background:
+  repeating-linear-gradient(to bottom,transparent 0 3px,var(--line) 3px 4px);border-radius:6px}
+.pfill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:6px;background:linear-gradient(90deg,rgba(224,69,123,.22),rgba(59,91,219,.28));transition:width .6s cubic-bezier(.3,1.4,.5,1)}
+.pnote{position:absolute;top:-3px;left:0;font-size:24px;line-height:1;color:var(--mag);transition:left .6s cubic-bezier(.3,1.4,.5,1);transform:translateX(-4px)}
+.rmb{display:flex;align-items:center;gap:8px;margin-top:6px;padding:5px 10px;border-radius:14px;font-size:.92rem;line-height:1.45;background:var(--lav)}
+.rmb .ic{flex:none;font-size:1.3rem;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-3px)}}
+#rmbTxt{flex:1;animation:fadeUp .5s ease}
+#rmbTxt b{color:var(--mag)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.rmb-min{flex:none;width:28px;height:28px;border:none;border-radius:9px;font-weight:800;color:#fff;background:var(--a2)}
+.rmb.mini #rmbTxt{display:none}
+.rmb.mini::after{content:'Lời nhắc của cô (bấm + để mở)';flex:1;opacity:.75}
+
+/* hero */
+.hero{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:22px 24px;margin:8px 0 18px;border-radius:30px;background:rgba(255,255,255,.88);border:4px solid #fff;box-shadow:0 14px 40px var(--shadow)}
+.hero-txt{flex:1 1 320px}
+.kick{display:inline-block;padding:1px 14px;border-radius:99px;font-weight:700;font-size:.9rem;color:#fff;background:var(--a1)}
+.hero h1{font-size:clamp(1.9rem,5.6vw,2.9rem);font-weight:700;line-height:1.1;margin:8px 0 6px;color:var(--ink)}
+.hero h1 span{background:linear-gradient(90deg,var(--mag),var(--cob) 60%,var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{font-size:1rem;color:var(--ink2)}
+.heroart{flex:none;width:190px;height:150px;margin:0 auto}
+
+/* phần */
+.sec{margin:28px 0 14px}
+.sec-h{display:flex;align-items:center;gap:14px;padding:12px 16px;border-radius:24px;background:rgba(255,255,255,.9);border:3px solid #fff;box-shadow:0 6px 18px var(--shadow)}
+.si{flex:none;width:54px;height:54px;display:grid;place-items:center;font-size:1.6rem;border-radius:18px;background:var(--a2);box-shadow:inset 0 -5px 0 rgba(0,0,0,.12)}
+.sec:nth-of-type(5n+1) .si{background:var(--a1)}.sec:nth-of-type(5n+3) .si{background:var(--a3)}.sec:nth-of-type(5n+4) .si{background:var(--a4)}
+.sec-h h2{font-size:1.25rem;font-weight:600;line-height:1.25}
+.sec-h p{font-size:.95rem;color:var(--ink2);line-height:1.4}
+.cnt{flex:none;margin-left:auto;padding:0 12px;border-radius:99px;font-weight:600;background:var(--lav);color:var(--cob)}
+.player{position:sticky;top:var(--tbh);z-index:40;margin:10px 0 12px;padding:8px 12px;border-radius:18px;background:rgba(255,255,255,.95);border:3px solid #fff;box-shadow:0 6px 16px var(--shadow);display:flex;align-items:center;gap:10px}
+.player .pl{flex:none;font-size:1.4rem}
+.player audio{flex:1;min-width:0;height:40px}
+
+/* thẻ câu hỏi */
+.card{position:relative;margin-bottom:16px;padding:16px 16px 14px;border-radius:26px;background:rgba(255,255,255,.95);border:4px solid #fff;box-shadow:0 8px 0 #fff,0 14px 28px var(--shadow)}
+.top{display:flex;align-items:flex-start;gap:10px;margin-bottom:6px}
+.qn{flex:none;min-width:42px;height:42px;display:grid;place-items:center;padding:0 8px;font-weight:600;font-size:1.1rem;color:#fff;border-radius:15px;background:var(--a2);box-shadow:inset 0 -4px 0 rgba(0,0,0,.15)}
+.qt{flex:1;font-size:1.12rem;font-weight:700;line-height:1.6;padding-top:3px}
+.ctx{display:block;font-size:.92rem;color:var(--ink2);font-weight:600}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.opts.txt{grid-template-columns:1fr}
+@media(min-width:640px){.opts.txt.wide{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.opts{grid-template-columns:1fr}.opts.pic{grid-template-columns:1fr 1fr 1fr}.opts.pic .opt img{height:70px}}
+.opt{position:relative;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:18px;border:3px solid var(--line);background:#fff;font-size:1.05rem;font-weight:700;color:var(--ink);text-align:left;box-shadow:0 4px 0 var(--line);transition:transform .15s,box-shadow .15s}
+.opt:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 7px 0 var(--line)}
+.opt:focus-visible,.gi:focus-visible,select:focus-visible,.btn:focus-visible{outline:3px solid var(--cob);outline-offset:2px}
+.opt .l{flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:50%;font-family:'Fredoka';font-weight:600;font-size:.95rem;color:#fff;background:var(--a2)}
+.opts.pic .opt{flex-direction:column;padding:8px 8px 10px}
+.opts.pic .opt img{width:100%;height:96px;object-fit:contain;border-radius:12px;background:#fff}
+.opts.pic .opt .l{position:absolute;left:6px;top:6px}
+.opt.good{border-color:var(--ok);background:var(--ok-bg);box-shadow:0 4px 0 #9ED9BD}.opt.good .l{background:var(--ok)}
+.opt.bad{border-color:var(--no);background:var(--no-bg);box-shadow:0 4px 0 #F5AFC0;animation:shake .4s}.opt.bad .l{background:var(--no)}
+.opt.dim{opacity:.5}.opt:disabled{cursor:default;transform:none}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+.fb{display:block;margin-top:8px;font-size:1rem;font-weight:800}.fb.ok{color:var(--ok)}.fb.no{color:var(--no)}
+
+/* bảng điền từ */
+.form{border-radius:26px;overflow:hidden;background:rgba(255,255,255,.95);border:4px solid #fff;box-shadow:0 8px 0 #fff,0 14px 28px var(--shadow)}
+.form-t{padding:10px 18px;font-family:'Fredoka';font-size:1.25rem;font-weight:600;color:#fff;background:var(--a1)}
+.frow{display:grid;grid-template-columns:200px 1fr;border-top:2px solid var(--lav)}
+.frow:nth-child(odd){background:#FAF6FF}
+@media(max-width:600px){.frow{grid-template-columns:1fr}}
+.flab{padding:12px 16px;font-weight:800;color:var(--ink2)}
+.fval{padding:10px 16px;line-height:2.2}
+.qbadge{display:inline-grid;place-items:center;min-width:28px;height:28px;margin:0 4px;padding:0 6px;border-radius:10px;font-family:'Fredoka';font-weight:600;font-size:.95rem;color:#fff;background:var(--cob)}
+.gi{width:150px;max-width:100%;margin:0 4px;padding:3px 10px;text-align:center;font-size:1.08rem;font-weight:800;color:var(--ink);border:none;border-bottom:3px dashed var(--line);border-radius:12px 12px 0 0;background:var(--lav);outline:none}
+.gi:focus{background:#fff;border-bottom-style:solid}
+.gi.ok{color:var(--ok);background:var(--ok-bg);border-bottom:3px solid var(--ok)}
+.gi.no{color:var(--no);background:var(--no-bg);border-bottom:3px solid var(--no);text-decoration:line-through}
+.ck{margin-left:4px;padding:1px 12px;border:none;border-radius:99px;font-weight:800;font-size:.9rem;color:#fff;background:var(--a2)}
+.ck:disabled{opacity:.45;cursor:default}
+.ansbox{display:inline-block;margin-left:4px;padding:0 10px;border-radius:10px;background:var(--ok-bg);color:var(--ok);font-weight:800}
+.hl{padding:0 6px;border-radius:7px;background:#FFE9A8}
+
+/* nối người – câu lạc bộ */
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.pcard{padding:12px;border-radius:24px;background:rgba(255,255,255,.95);border:4px solid #fff;box-shadow:0 8px 0 #fff,0 12px 24px var(--shadow);text-align:center}
+.pcard .pic{height:130px;display:grid;place-items:center}
+.pcard .pic img{max-height:130px;max-width:100%;object-fit:contain}
+.pcard .nm{margin:4px 0 6px;font-family:'Fredoka';font-weight:600;font-size:1.15rem}
+.pcard .nm .qn{display:inline-grid;min-width:36px;height:36px;margin-right:6px;font-size:1rem;vertical-align:middle}
+.pcard select{width:100%;padding:9px 10px;border-radius:14px;border:3px solid var(--line);font-weight:800;font-size:1rem;color:var(--ink);background:#fff}
+.pcard select.good{border-color:var(--ok);background:var(--ok-bg)}.pcard select.bad{border-color:var(--no);background:var(--no-bg)}
+.pcard .expl{text-align:left}
+.legend{margin:0 0 12px;padding:10px 14px;border-radius:18px;background:rgba(255,255,255,.9);border:3px dashed var(--line);display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:2px 14px;font-weight:700;font-size:.98rem}
+.legend b{color:var(--mag)}
+
+/* lời giải */
+.expl{display:none;margin-top:10px}
+.expl.show{display:block;animation:fadeUp .45s ease}
+.exp-box{padding:12px;border-radius:20px;font-size:.98rem;line-height:1.65;background:linear-gradient(150deg,#F2F0FF,#fff 55%,#FFF7E6);border:3px dashed var(--line)}
+.exp-box h4{font-family:'Fredoka';font-size:1rem;font-weight:600;color:var(--cob);margin-bottom:6px}
+.exp-box .r{margin-bottom:7px;padding:8px 12px;border-radius:13px;background:rgba(255,255,255,.92);border-left:6px solid var(--sun)}
+.exp-box .r.ev{border-left-color:var(--cob)}.exp-box .r.ok{border-left-color:var(--ok)}.exp-box .r.no{border-left-color:var(--no);background:#FFF4F7}
+.exp-box .r:last-child{margin-bottom:0}
+.exp-box mark{padding:0 5px;border-radius:6px;background:#FFE9A8;color:var(--ink);font-weight:800}
+.exp-box .r>b:first-child{color:var(--cob)}
+
+/* script */
+.scr{display:none;margin-top:12px}
+.scr.show{display:block}
+.scr summary{cursor:pointer;padding:9px 14px;border-radius:16px;background:rgba(255,255,255,.92);border:3px solid #fff;font-weight:800;color:var(--cob);box-shadow:0 4px 12px var(--shadow)}
+.scr .sbody{margin-top:8px;padding:12px 16px;border-radius:16px;background:#fff;border:2px solid var(--lav);font-size:.98rem;line-height:1.8;font-weight:600}
+.scr .sbody p{margin-bottom:10px}
+.scr .sbody .q{font-family:'Fredoka';color:var(--mag);font-weight:600}
+
+/* nút + modal */
+.btn{padding:12px 32px;border:none;border-radius:99px;font-size:1.15rem;font-weight:600;color:#fff;background:var(--a1);box-shadow:inset 0 -5px 0 rgba(0,0,0,.15),0 6px 16px var(--shadow);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}.btn.b2{background:var(--a2)}.btn.b3{background:var(--a3)}.btn:disabled{opacity:.55;cursor:default;transform:none}
+.finish{text-align:center;margin:30px 0 10px}
+.ov{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:14px;background:rgba(42,31,77,.42);backdrop-filter:blur(6px)}
+.ov.show{display:flex}
+.modal{width:100%;max-width:450px;max-height:92vh;overflow:auto;padding:24px 22px 20px;text-align:center;border-radius:30px;background:linear-gradient(160deg,#F2F0FF,#fff 45%,#FFF7E6);border:4px solid #fff;box-shadow:0 20px 50px rgba(42,31,77,.35);animation:fadeUp .4s ease}
+.modal .em{font-size:3.2rem;line-height:1.1}
+.modal .big{font-family:'Fredoka';font-size:2.8rem;font-weight:700;color:var(--mag)}
+.modal .ten{font-size:1.15rem;font-weight:800;color:var(--cob);margin-bottom:8px}
+.modal .who{font-weight:800;color:var(--ink2);margin-bottom:6px}
+.brk{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:8px 0 10px}
+.brk div{padding:6px 2px;border-radius:14px;background:#fff;border:2px solid var(--lav);font-size:.85rem;line-height:1.3}
+.brk b{display:block;font-family:'Fredoka';font-size:1.1rem;color:var(--ink)}
+.note-t{margin:6px 0 12px;font-size:1rem}
+.mail{margin:8px 0 12px;padding:9px 12px;border-radius:16px;font-weight:800;font-size:.98rem;line-height:1.5}
+.mail.wait{background:#FFF4D6;color:#8A5A00}.mail.ok{background:var(--ok-bg);color:var(--ok)}.mail.err{background:var(--no-bg);color:var(--no)}
+.mail .btn{margin-top:8px;padding:6px 22px;font-size:1rem}
+.gate .modal{max-width:480px}
+.gate h2{font-size:1.6rem;font-weight:700;margin:4px 0 2px}
+.gate p{color:var(--ink2);font-size:.98rem;margin-bottom:10px}
+.gate label{display:block;text-align:left;margin:8px 0 3px;font-weight:800;font-size:.95rem}
+.gate input{width:100%;padding:10px 14px;border-radius:14px;border:3px solid var(--line);font-size:1.05rem;font-weight:700;color:var(--ink);background:#fff}
+.gate input:focus{border-color:var(--cob);outline:none}
+.gate .err{min-height:1.4em;color:var(--no);font-weight:800;font-size:.92rem;margin:6px 0}
+.cfgwarn{margin:10px 0 0;padding:8px 12px;border-radius:14px;background:#FFF4D6;color:#8A5A00;font-weight:800;font-size:.9rem;text-align:left}
+.pending{display:none;margin:10px 0;padding:10px 14px;border-radius:18px;background:#FFF4D6;color:#8A5A00;font-weight:800;text-align:center}
+.pending.show{display:block}
+.pending .btn{padding:4px 18px;font-size:.95rem;margin-left:8px}
+.foot{display:block;width:fit-content;max-width:94%;margin:24px auto 8px;padding:10px 18px;border-radius:16px;background:rgba(255,255,255,.95);box-shadow:0 6px 18px var(--shadow);text-align:center;font-weight:800;font-size:1rem}
+.foot b{color:var(--mag)}
+</style>
+</head>
+<body>
+<div class="deco" id="deco" aria-hidden="true"></div>
+
+<div class="wrap">
+  <div class="topbar"><div class="topbar-in" id="tb">
+    <div class="prog-row">
+      <div class="pchip" id="scoreChip">⭐ 0</div>
+      <div class="staff"><div class="pfill" id="pfill"></div><div class="pnote" id="pnote">♪</div></div>
+      <div class="pchip s2" id="progChip">0/25</div>
+    </div>
+    <div class="rmb" id="rmbBox"><span class="ic" id="rmbIc">🎧</span><span id="rmbTxt">…</span>
+      <button class="rmb-min" id="rmbMin" title="Thu gọn lời nhắc" onclick="toggleRmb()">–</button></div>
+  </div></div>
+
+  <div class="pending" id="pending">Con có một bài làm trước đó chưa gửi được cho cô. <button class="btn b3" onclick="resendPending()">Gửi lại</button></div>
+
+  <div class="hero">
+    <div class="hero-txt">
+      <span class="kick">🎵 ENGLISH 7 · GLOBAL SUCCESS · UNIT 4</span>
+      <h1>Music and Arts<br><span>Listening Practice</span></h1>
+      <div class="sub">5 phần · 25 câu · nghe, chọn đáp án, xem lời giải ngay. Khi nộp bài, kết quả được gửi tự động đến cô.</div>
+    </div>
+    <svg class="heroart" viewBox="0 0 190 150" aria-hidden="true">
+      <g stroke="#D9CFF7" stroke-width="2"><line x1="6" y1="30" x2="184" y2="30"/><line x1="6" y1="40" x2="184" y2="40"/><line x1="6" y1="50" x2="184" y2="50"/><line x1="6" y1="60" x2="184" y2="60"/><line x1="6" y1="70" x2="184" y2="70"/></g>
+      <g fill="#3B5BDB"><ellipse cx="40" cy="62" rx="9" ry="6.5" transform="rotate(-20 40 62)"/><rect x="47" y="24" width="3" height="40"/><ellipse cx="86" cy="48" rx="9" ry="6.5" transform="rotate(-20 86 48)"/><rect x="93" y="12" width="3" height="38"/></g>
+      <g fill="#E0457B"><ellipse cx="136" cy="68" rx="9" ry="6.5" transform="rotate(-20 136 68)"/><rect x="143" y="30" width="3" height="40"/><path d="M146 30 q18 6 14 22 q-2 -12 -14 -14z"/></g>
+      <path d="M46 138c-26-6-34-30-22-48 10-15 36-20 56-12 22 9 26 26 14 34-8 6-16 0-20 8-4 10-14 22-28 18z" fill="#FFD98A" stroke="#F08C00" stroke-width="3"/>
+      <circle cx="34" cy="108" r="6" fill="#E0457B"/><circle cx="50" cy="98" r="6" fill="#3B5BDB"/><circle cx="68" cy="100" r="6" fill="#14A38B"/><circle cx="76" cy="114" r="6" fill="#fff" stroke="#F08C00" stroke-width="2"/>
+      <path d="M118 140l44-44" stroke="#2A1F4D" stroke-width="5" stroke-linecap="round"/><path d="M160 98l12-14 4 4-14 12z" fill="#E0457B"/>
+    </svg>
+  </div>
+
+  <div id="quiz"></div>
+
+  <div class="finish"><button class="btn" id="submitBtn" onclick="trySubmit()">🎶 Nộp bài &amp; gửi cho cô</button></div>
+  <div class="foot">🎨 <b>Unit 4 · Music and Arts</b> · Compiled by Ms. Linh · Learning English with Ms. Linh</div>
+</div>
+
+<!-- nhập tên -->
+<div class="ov gate show" id="gate"><div class="modal">
+  <div class="em">🎻</div>
+  <h2>Listening · Unit 4</h2>
+  <p>Con nhập họ tên và lớp để cô nhận đúng bài của con nhé.</p>
+  <label for="inName">Họ và tên</label>
+  <input id="inName" autocomplete="name" placeholder="Ví dụ: Nguyễn Văn An">
+  <label for="inClass">Lớp</label>
+  <input id="inClass" autocomplete="off" placeholder="Ví dụ: 7A2">
+  <div class="err" id="gateErr"></div>
+  <button class="btn" onclick="startQuiz()">▶ Bắt đầu làm bài</button>
+  <div class="cfgwarn" id="cfgWarn" style="display:none">⚠️ Chưa cài mã nhận bài về email của cô (mở file config.js và làm theo hướng dẫn). Khi chưa cài, bài làm sẽ không gửi được.</div>
+</div></div>
+
+<!-- kết quả -->
+<div class="ov" id="resOv"><div class="modal">
+  <div class="em" id="resEm">🏆</div>
+  <div class="who" id="resWho"></div>
+  <div class="big" id="resScore">0/25</div>
+  <div class="ten" id="resTen">0 / 10 điểm</div>
+  <div class="brk" id="resBreak"></div>
+  <div class="note-t" id="resNote"></div>
+  <div class="mail wait" id="mailSt">Đang gửi bài cho cô…</div>
+  <button class="btn" onclick="closeRes()">📖 Xem lại bài</button>
+  <div style="height:10px"></div>
+  <button class="btn b2" onclick="location.reload()">🔄 Làm lại từ đầu</button>
+</div></div>
+
+<script src="config.js"></script>
+<script>
+/* ═══════════ DỮ LIỆU ĐỀ — UNIT 4 MUSIC AND ARTS ═══════════ */
+const CLUBS=["Photography Club","Choir","Street Painting Club","Piano Club","Drama Club","Guitar Club","Violin Club","Water Puppetry Club"];
+const L="ABCDEFGH";
+const SECS=[
+{id:1,icon:"🎧",title:"Part 1 · Questions 1–5",desc:"Nghe và chọn tranh đúng (A, B hoặc C).",audio:"audio/part1.mp3",type:"pic",items:[
+ {n:1,q:"Which instrument does David play?",imgs:["q1a.jpg","q1b.jpg","q1c.jpg"],alts:["Piano","Guitar","Violin"],ans:2,
+  script:`Girl: Is David going to perform at the concert tonight? Does he play the piano? Boy: No, his sister plays the piano. David is learning a different instrument. Girl: I saw him with a guitar yesterday. Boy: He likes the guitar, but he is actually playing the violin for the concert. He's very good at it.`,
+  ex:{vi:"David chơi nhạc cụ nào?",ev:`Boy: "…he is <mark>actually playing the violin</mark> for the concert."`,why:"Chữ <b>actually</b> báo hiệu thông tin thật: David chơi <b>violin</b> trong buổi hòa nhạc.",trap:"Piano là của chị gái David. Guitar chỉ là cây đàn bạn nữ thấy hôm qua, “He likes the guitar, <i>but</i>…” nghĩa là không phải guitar."}},
+ {n:2,q:"Where are they going this evening?",imgs:["q2a.jpg","q2b.jpg","q2c.jpg"],alts:["Art gallery","Cinema","Water puppet theatre"],ans:2,
+  script:`Boy: Shall we go to the art gallery this evening to see the new paintings? Girl: I think it's closed today. How about going to the cinema? Boy: I don't really like films. Let's go to the water puppet theatre instead. It's a traditional Vietnamese art form. Girl: That's a great idea! Let's go.`,
+  ex:{vi:"Tối nay họ đi đâu?",ev:`Boy: "Let's go to the <mark>water puppet theatre</mark> instead." Girl: "That's a great idea! Let's go."`,why:"Cả hai cùng đồng ý đi <b>nhà hát múa rối nước</b>.",trap:"Phòng tranh “closed today” (đóng cửa); rạp chiếu phim bị từ chối vì “I don't really like films”."}},
+ {n:3,q:"What time does the street painting festival start?",imgs:["q3a.jpg","q3b.jpg","q3c.jpg"],alts:["Clock showing 8.45","Clock showing 9.00","Clock showing 9.15"],ans:1,
+  script:`Girl: We need to leave soon for the Lake Worth Street Painting Festival. Does it start at a quarter past nine? Boy: No, it starts earlier than that. The starting time is 9 o'clock. Girl: Oh, okay. So we should meet our friends outside at 8.45. Boy: Yes, a quarter to nine is perfect.`,
+  ex:{vi:"Lễ hội vẽ tranh đường phố bắt đầu lúc mấy giờ?",ev:`Boy: "No, it starts earlier than that. The starting time is <mark>9 o'clock</mark>."`,why:"Lễ hội bắt đầu lúc <b>9:00</b>.",trap:"“a quarter past nine” (9:15) bị phủ định. “8.45” là giờ hẹn gặp bạn bè, không phải giờ bắt đầu lễ hội."}},
+ {n:4,q:"What does the girl need to buy for her art project?",imgs:["q4a.jpg","q4b.jpg","q4c.jpg"],alts:["Camera","Paintbrushes","Keyboard"],ans:1,
+  script:`Girl: Mum, can we go to the shop? I need some things for school. Mother: Do you need a new camera for your photography club? Girl: No, my smartphone takes good photos. But for my art project, I lost my paintbrush. I need to buy a new one today. Mother: Alright, get your coat.`,
+  ex:{vi:"Cô bé cần mua gì cho dự án mỹ thuật?",ev:`Girl: "…for my art project, I <mark>lost my paintbrush</mark>. I need to buy a new one today."`,why:"Cô bé làm mất cọ vẽ nên cần mua <b>cọ mới</b>.",trap:"Máy ảnh: mẹ hỏi nhưng bé trả lời “No, my smartphone takes good photos”. Đàn keyboard không được nhắc đến."}},
+ {n:5,q:"How much is the concert ticket for a student?",imgs:["q5a.jpg","q5b.jpg","q5c.jpg"],alts:["£15","£25","£50"],ans:0,
+  script:`Boy: I want to buy a ticket for the classical concert. Are they £50? Girl: No, that price is only for the front row seats. Normal tickets for adults are £25. Boy: But we are students. Is it cheaper for us? Girl: Yes, the student ticket is not as expensive. It's only £15.`,
+  ex:{vi:"Vé hòa nhạc dành cho học sinh giá bao nhiêu?",ev:`Girl: "Yes, the student ticket is not as expensive. <mark>It's only £15.</mark>"`,why:"Giá vé học sinh là <b>£15</b>.",trap:"£50 là vé hàng ghế đầu; £25 là vé người lớn thường. Đề hỏi vé <b>học sinh</b>."}}
+]},
+{id:2,icon:"✏️",title:"Part 2 · Questions 6–10",desc:"Nghe và điền vào chỗ trống (một từ, một số hoặc một giờ).",audio:"audio/part2.mp3",type:"gap",
+ script:`You will hear a teacher telling students about the School Music Show. Teacher: Hello everyone. Please listen to some information about our School Music Show. It will be this Saturday. We won't have it in the schoolyard because it might rain. We will hold the show in the school Hall. The show will start at 7.30 p.m., so please don't be late. There will be lots of different performances. We have folk music, pop music, and even some dancing! It will be a fantastic festival. The teacher organising the event is Mr. Shaw. That is S-H-A-W. If you have any questions, please ask him. One last thing, you should bring a camera to take beautiful photos of your friends performing. See you all there!`,
+ items:[
+ {n:6,ans:"hall",show:"Hall",ok:v=>["hall","school hall","the hall"].includes(v),
+  ex:{vi:"Địa điểm: School ___",ev:`"We won't have it in the schoolyard because it might rain. We will hold the show in the school <mark>Hall</mark>."`,why:"Buổi diễn tổ chức ở <b>hội trường</b> của trường.",trap:"“schoolyard” (sân trường) bị loại vì trời có thể mưa."}},
+ {n:7,ans:"7.30",show:"7.30",ok:v=>{const t=v.replace(/p\.?\s?m\.?/g,"").replace(/[:h\s]+/g,".").replace(/^\.|\.$/g,"");return t==="7.30"||t==="730"},
+  ex:{vi:"Giờ bắt đầu: ___ p.m",ev:`"The show will start at <mark>7.30 p.m.</mark>, so please don't be late."`,why:"Buổi diễn bắt đầu lúc <b>7.30 tối</b>.",trap:"Có thể viết 7.30, 7:30 hoặc 7h30 đều được."}},
+ {n:8,ans:"dancing",show:"dancing",ok:v=>v==="dancing",hint:{dance:"Gần đúng rồi! Trong bài là “dancing” (danh động từ)."},
+  ex:{vi:"Hoạt động: Folk music, pop music and ___",ev:`"We have folk music, pop music, and even some <mark>dancing</mark>!"`,why:"Sau “even some” là <b>dancing</b> (nhảy múa).",trap:"Nghe kỹ đuôi <b>-ing</b> và viết đúng chính tả: d-a-n-c-i-n-g."}},
+ {n:9,ans:"shaw",show:"Shaw",ok:v=>v==="shaw"||v==="s-h-a-w",
+  ex:{vi:"Giáo viên phụ trách: Mr. ___",ev:`"The teacher organising the event is Mr. <mark>Shaw</mark>. That is <mark>S-H-A-W</mark>."`,why:"Khi người nói đánh vần S-H-A-W, con ghép các chữ cái lại thành <b>Shaw</b>.",trap:"Các câu hỏi tên riêng thường được đánh vần, hãy nghe từng chữ cái."}},
+ {n:10,ans:"camera",show:"camera",ok:v=>["camera","a camera"].includes(v),
+  ex:{vi:"Cần mang theo: A ___",ev:`"…you should bring a <mark>camera</mark> to take beautiful photos of your friends performing."`,why:"Học sinh được dặn mang theo <b>máy ảnh</b> để chụp ảnh bạn diễn.",trap:"Ô trống đã có sẵn “A”, nên chỉ cần điền camera."}}
+ ],
+ rows:[
+  {ic:"📅",lab:"Day",val:"Saturday"},
+  {ic:"📍",lab:"Place",pre:"School ",n:6},
+  {ic:"⏰",lab:"Start time",n:7,post:" p.m"},
+  {ic:"🎵",lab:"Activities",pre:"Folk music, pop music and ",n:8},
+  {ic:"👩‍🏫",lab:"Teacher in charge",pre:"Mr. ",n:9},
+  {ic:"🎒",lab:"What to bring",pre:"A ",n:10}
+ ]},
+{id:3,icon:"🎙️",title:"Part 3 · Questions 11–15",desc:"Nghe Nick nói chuyện với bạn Mai về buổi diễn múa rối nước, rồi chọn đáp án đúng.",audio:"audio/part3.mp3",type:"mcq",
+ script:`You will hear Nick talking to his friend, Mai, about a water puppet show. Nick: Hi Mai. Do you want to go to the water puppet show with me? Mai: I'd love to, Nick! I went to one last Sunday morning and it was fantastic. When do you want to go? Nick: How about this Saturday evening? The theatre is in the centre of Ha Noi. Mai: Saturday evening is perfect. What are the shows normally about? Are they about modern life? Nick: No, they are different from modern plays. They are usually about everyday life in the countryside, like rice farming and fishing. There is also traditional folk music. Mai: Oh, I see. I prefer pop music. I think folk music is not as exciting as pop music. Nick: It's different, but very beautiful. Do you know any famous Vietnamese composers? Mai: Yes, we learn about them at school. My favourite composer is Van Cao. He wrote the national anthem. Nick: Oh, right! Hey, we should take lots of pictures at the show. Mai: I'll use my smartphone. It takes really bright photos, just like a camera!`,
+ items:[
+ {n:11,q:"When will they go to the show?",opts:["Saturday evening","Sunday morning","Sunday evening"],ans:0,
+  ex:{vi:"Khi nào họ sẽ đi xem buổi diễn?",ev:`Nick: "How about this <mark>Saturday evening</mark>?" Mai: "<mark>Saturday evening</mark> is perfect."`,why:"Cả hai thống nhất đi vào <b>tối thứ Bảy</b>.",trap:"“Sunday morning” là lúc Mai đã đi xem lần trước (“I went to one <i>last</i> Sunday morning”), là quá khứ chứ không phải kế hoạch."}},
+ {n:12,q:"What are water puppet shows normally about?",opts:["Modern life in the city.","Everyday life in the countryside.","Famous musicians and artists."],ans:1,
+  ex:{vi:"Múa rối nước thường nói về chủ đề gì?",ev:`Nick: "They are usually about <mark>everyday life in the countryside</mark>, like rice farming and fishing."`,why:"Nick nói rõ chủ đề là <b>cuộc sống thường ngày ở nông thôn</b> (cấy lúa, đánh cá).",trap:"Mai hỏi “Are they about modern life?” nhưng Nick trả lời “No”."}},
+ {n:13,q:"How does Mai feel about folk music?",opts:["It is as exciting as pop music.","It is not as exciting as pop music.","It is exactly like pop music."],ans:1,
+  ex:{vi:"Mai cảm thấy thế nào về nhạc dân gian?",ev:`Mai: "I prefer pop music. I think folk music is <mark>not as exciting as pop music</mark>."`,why:"Mai thích nhạc pop hơn và cho rằng nhạc dân gian <b>không sôi động bằng</b> nhạc pop.",trap:"Cấu trúc so sánh <b>not as … as</b> = kém hơn. Nick thì thấy nhạc dân gian “different, but very beautiful”."}},
+ {n:14,q:"Who is Mai's favourite composer?",opts:["Mozart","Pham Tuyen","Van Cao"],ans:2,
+  ex:{vi:"Nhà soạn nhạc yêu thích của Mai là ai?",ev:`Mai: "My favourite composer is <mark>Van Cao</mark>. He wrote the national anthem."`,why:"Mai nói thẳng tên <b>Văn Cao</b>, tác giả bài Quốc ca.",trap:"Mozart và Phạm Tuyên không được nhắc trong đoạn hội thoại."}},
+ {n:15,q:"What will Mai use to take photos?",opts:["A digital camera","A smartphone","A tablet"],ans:1,
+  ex:{vi:"Mai sẽ dùng gì để chụp ảnh?",ev:`Mai: "I'll use my <mark>smartphone</mark>. It takes really bright photos, just like a camera!"`,why:"Mai dùng <b>điện thoại thông minh</b>.",trap:"“just like a camera” chỉ là so sánh, Mai không dùng máy ảnh thật."}}
+ ]},
+{id:4,icon:"🎨",title:"Part 4 · Questions 16–20",desc:"Nghe năm đoạn ngắn rồi chọn đáp án đúng cho mỗi câu.",audio:"audio/part4.mp3",type:"mcq",items:[
+ {n:16,ctx:"You will hear a boy talking about a museum.",q:"Why does he like it?",opts:["Because it is very modern.","Because of the famous paintings.","Because the tickets are cheap."],ans:1,
+  script:`Boy: Last year, I visited the Louvre Museum in Paris. It is different from the Science Museum in my city because it is very historic and not modern at all. The tickets aren't cheap, but I love it because it displays thousands of famous paintings, including the Mona Lisa. It was an amazing experience!`,
+  ex:{vi:"Vì sao cậu bé thích bảo tàng này?",ev:`"…I love it because it displays thousands of <mark>famous paintings</mark>, including the Mona Lisa."`,why:"Lý do sau <b>I love it because</b> là những bức tranh nổi tiếng.",trap:"A sai: bảo tàng “not modern at all”. C sai: “The tickets aren't cheap”."}},
+ {n:17,ctx:"You will hear a girl talking about her hobby.",q:"What does she like doing?",opts:["Taking photos.","Playing the cello.","Painting portraits."],ans:2,
+  script:`Girl: In my family, everyone loves music and arts. My sister plays the cello beautifully, and my brother is great at taking photos with his new camera. However, my taste is different from theirs. I love drawing and painting portraits of people. I can spend hours doing it.`,
+  ex:{vi:"Cô bé thích làm gì?",ev:`"However, my taste is different from theirs. I love drawing and <mark>painting portraits</mark> of people."`,why:"Sau từ <b>However</b>, cô bé nói sở thích riêng: vẽ chân dung.",trap:"Chơi cello là chị gái, chụp ảnh là anh trai. Từ nối <b>However</b> báo hiệu thông tin quan trọng."}},
+ {n:18,ctx:"You will hear two friends talking about a TV show.",q:"What did they think was excellent?",opts:["The acting.","The photography.","The music."],ans:1,
+  script:`Boy: Did you watch the documentary "Amazon Jungle" on TV last night? Girl: Yes, I did! The actors weren't very good, and the music was a bit boring. Boy: I agree. But the photography was excellent! The pictures of the animals and trees were beautiful.`,
+  ex:{vi:"Họ cho rằng điều gì xuất sắc?",ev:`Boy: "I agree. <mark>But the photography was excellent!</mark>"`,why:"Sau từ <b>But</b>, cậu bé khen phần quay chụp là <b>excellent</b>.",trap:"Diễn viên “weren't very good”, âm nhạc “a bit boring”, cả hai đều bị chê."}},
+ {n:19,ctx:"You will hear a teacher talking to a student.",q:"What is his advice?",opts:["To join the school choir.","To practice the piano more.","To go to an art exhibition."],ans:0,
+  script:`Teacher: Susan, your music test results are wonderful. You don't play the piano as well as Mary, but you have a very special talent. You have a beautiful voice. You should join the school choir. They practice singing every Tuesday afternoon.`,
+  ex:{vi:"Lời khuyên của thầy là gì?",ev:`Teacher: "You have a beautiful voice. <mark>You should join the school choir.</mark>"`,why:"Cấu trúc <b>You should + V</b> dùng để khuyên: nên tham gia đội hợp xướng.",trap:"Thầy chỉ so sánh Susan chơi piano chưa giỏi bằng Mary, không khuyên tập thêm piano."}},
+ {n:20,ctx:"You will hear a mother talking to her son.",q:"What is the boy looking for?",opts:["His guitar.","His smartphone.","His concert tickets."],ans:2,
+  script:`Mother: What are you looking for, Jack? Have you lost your smartphone again? Boy: No, I have my phone right here. I'm looking for my concert tickets! The rock band is performing tonight and I can't find them anywhere. Mother: Look on your desk, next to your guitar.`,
+  ex:{vi:"Cậu bé đang tìm gì?",ev:`Boy: "No, I have my phone right here. <mark>I'm looking for my concert tickets!</mark>"`,why:"Cậu bé tìm <b>vé hòa nhạc</b> của ban nhạc rock tối nay.",trap:"Điện thoại đang cầm trên tay. Cây guitar chỉ là vật làm mốc: vé ở “next to your guitar”."}}
+ ]},
+{id:5,icon:"🎭",title:"Part 5 · Questions 21–25",desc:"Nghe Linda nói chuyện với bố về các câu lạc bộ của bạn bè. Mỗi bạn tham gia câu lạc bộ nào?",audio:"audio/part5.mp3",type:"match",
+ script:`You will hear Linda talking to her father about the art clubs her friends join. Father: Does your school have many music and arts clubs, Linda? Linda: Yes, Dad! My friends are in different clubs. Tom loves drawing on the road, so he joins the Street Painting Club. Father: That sounds fun. What about Alice? Linda: Alice has a lovely voice. She is in the school Choir. They sing folk songs and pop music. Father: Does Peter sing too? Linda: No, Peter isn't good at singing. He is in the Photography Club. He has a very expensive camera. Father: And Mary? Does she play an instrument? Linda: Yes, she plays the violin. She's in the Violin Club and practices every day. Father: What about John? Linda: John wants to be an actor on stage, so he is in the Drama Club. They are preparing a new play for Teachers' Day!`,
+ items:[
+ {n:21,name:"Tom",img:"tom.png",ans:2,ex:{vi:"Tom tham gia câu lạc bộ nào?",ev:`"Tom loves <mark>drawing on the road</mark>, so he joins the <mark>Street Painting Club</mark>."`,why:"Vẽ trên đường = <b>Street Painting Club</b>.",trap:""}},
+ {n:22,name:"Alice",img:"alice.png",ans:1,ex:{vi:"Alice tham gia câu lạc bộ nào?",ev:`"Alice has a <mark>lovely voice</mark>. She is in the school <mark>Choir</mark>."`,why:"Giọng hát hay nên Alice vào <b>Choir</b> (đội hợp xướng).",trap:""}},
+ {n:23,name:"Peter",img:"peter.png",ans:0,ex:{vi:"Peter tham gia câu lạc bộ nào?",ev:`"Peter isn't good at singing. He is in the <mark>Photography Club</mark>. He has a very expensive <mark>camera</mark>."`,why:"Có máy ảnh đắt tiền, vào <b>Photography Club</b>.",trap:"Peter không giỏi hát nên không vào Choir."}},
+ {n:24,name:"Mary",img:"mary.png",ans:6,ex:{vi:"Mary tham gia câu lạc bộ nào?",ev:`"Yes, she plays the <mark>violin</mark>. She's in the <mark>Violin Club</mark> and practices every day."`,why:"Mary chơi violin nên vào <b>Violin Club</b>.",trap:"Bố hỏi “Does she play an instrument?” để dẫn vào tên nhạc cụ."}},
+ {n:25,name:"John",img:"john.png",ans:4,ex:{vi:"John tham gia câu lạc bộ nào?",ev:`"John wants to be an <mark>actor</mark> on stage, so he is in the <mark>Drama Club</mark>."`,why:"Muốn trở thành diễn viên sân khấu = <b>Drama Club</b>.",trap:""}}
+ ]}
+];
+
+const REM=[["🎧","Chào nghệ sĩ nhí! <b>25 câu</b> Music and Arts đang chờ con. Đeo tai nghe vào nào!"],
+["🎻","Part 1 — nghe thật kỹ rồi chọn <b>tranh</b> đúng. Chú ý những chữ như <b>but</b>, <b>actually</b> nhé!"],
+["✏️","Part 2 — điền từ. Nghe tên người, con để ý <b>đánh vần</b> từng chữ cái."],
+["🎙️","Part 3 — một cuộc trò chuyện dài. Đọc câu hỏi trước khi nghe để biết cần bắt thông tin gì."],
+["🎨","Part 4 — năm đoạn ngắn. Từ <b>However</b> và <b>But</b> thường mở ra đáp án thật đó!"],
+["🎭","Part 5 — nối bạn với câu lạc bộ. Con nghe sở thích rồi suy ra câu lạc bộ nhé."],
+["🎵","Con làm tốt lắm! Sai câu nào, đọc lời giải rồi nghe lại đoạn đó một lần."],
+["🌟","Học nghe giống học nhạc: càng nghe nhiều tai càng “nhạy”. Cố lên con!"]];
+
+/* ═══════════ TRẠNG THÁI ═══════════ */
+const TOTAL=25, CFG=window.QUIZ_CONFIG||{};
+const A={}; // A[n]={ok,done,val}
+let student={name:"",cls:""}, tStart=0, submitted=false, mailSent=false, lastPayload=null;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function fmtScript(t){return '<p>'+t.replace(/\s*(Girl|Boy|Mother|Teacher|Father|Linda|Nick|Mai):/g,'</p><p><b>$1:</b>').replace(/^<p><\/p>/,'')+'</p>';}
+function exBox(ex){return '<div class="exp-box"><h4>⚡ GIẢI THÍCH CHI TIẾT</h4><div class="r vi">💬 <b>Dịch:</b> '+ex.vi+'</div><div class="r ev">🎧 <b>Trong bài nghe:</b> '+ex.ev+'</div><div class="r ok">✅ <b>Vì sao đúng:</b> '+ex.why+'</div>'+(ex.trap?'<div class="r no">⚠️ <b>Cần nhớ:</b> '+ex.trap+'</div>':'')+'</div>';}
+
+/* ═══════════ DỰNG GIAO DIỆN ═══════════ */
+function build(){
+  const q=$("quiz");let h="";
+  SECS.forEach(S=>{
+    h+='<section class="sec" id="sec'+S.id+'"><div class="sec-h"><div class="si">'+S.icon+'</div><div><h2>'+S.title+'</h2><p>'+S.desc+'</p></div><div class="cnt">'+(S.items.length)+' câu</div></div>';
+    h+='<div class="player"><span class="pl">🔊</span><audio controls preload="metadata" src="'+S.audio+'" aria-label="Audio '+S.title+'"></audio></div>';
+    if(S.type==="match"){
+      h+='<div class="legend">'+CLUBS.map((c,i)=>'<span><b>'+L[i]+'.</b> '+c+'</span>').join('')+'</div><div class="people">';
+      S.items.forEach(it=>{h+='<div class="pcard" id="c'+it.n+'"><div class="pic"><img src="img/'+it.img+'" alt="'+it.name+'"></div><div class="nm"><span class="qn">'+it.n+'</span>'+it.name+'</div><select id="sel'+it.n+'" aria-label="Câu lạc bộ của '+it.name+'" onchange="pickMatch('+it.n+',this)"><option value="">— Chọn câu lạc bộ —</option>'+CLUBS.map((c,i)=>'<option value="'+i+'">'+L[i]+'. '+c+'</option>').join('')+'</select><div class="fb" id="fb'+it.n+'"></div><div class="expl" id="ex'+it.n+'">'+exBox(it.ex)+'</div></div>';});
+      h+='</div>';
+    } else if(S.type==="gap"){
+      h+='<div class="form"><div class="form-t">🎶 SCHOOL MUSIC SHOW</div>';
+      S.rows.forEach(r=>{
+        h+='<div class="frow"><div class="flab">'+r.ic+' '+r.lab+':</div><div class="fval">';
+        if(r.val){h+=r.val;}
+        else{h+=(r.pre||'')+'<span class="qbadge">'+r.n+'</span><input class="gi" id="gi'+r.n+'" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Câu '+r.n+'" onkeydown="if(event.key===\'Enter\')checkGap('+r.n+')"><button class="ck" id="ck'+r.n+'" onclick="checkGap('+r.n+')">Kiểm tra</button>'+(r.post||'')+'<span class="fb" id="fb'+r.n+'"></span><div class="expl" id="ex'+r.n+'">'+exBox(S.items.find(i=>i.n===r.n).ex)+'</div>';}
+        h+='</div></div>';
+      });
+      h+='</div>';
+    } else {
+      S.items.forEach(it=>{
+        const pic=S.type==="pic";
+        h+='<div class="card" id="c'+it.n+'"><div class="top"><div class="qn">'+it.n+'</div><div class="qt">'+(it.ctx?'<span class="ctx">'+it.ctx+'</span>':'')+it.q+'</div></div>';
+        h+='<div class="opts '+(pic?'pic':'txt'+(it.opts.every(o=>o.length<26)?' wide':''))+'">';
+        if(pic){it.imgs.forEach((im,i)=>{h+='<button class="opt" id="o'+it.n+'_'+i+'" onclick="pick('+it.n+','+i+')"><span class="l">'+L[i]+'</span><img src="img/'+im+'" alt="'+it.alts[i]+'"></button>';});}
+        else{it.opts.forEach((o,i)=>{h+='<button class="opt" id="o'+it.n+'_'+i+'" onclick="pick('+it.n+','+i+')"><span class="l">'+L[i]+'</span><span>'+esc(o)+'</span></button>';});}
+        h+='</div><div class="fb" id="fb'+it.n+'"></div><div class="expl" id="ex'+it.n+'">'+exBox(it.ex)+'</div></div>';
+      });
+    }
+    // script
+    let sc="";
+    if(S.script)sc='<div class="sbody">'+fmtScript(S.script)+'</div>';
+    else sc='<div class="sbody">'+S.items.map(it=>'<p class="q">Question '+it.n+'</p>'+fmtScript(it.script)).join('')+'</div>';
+    h+='<details class="scr" id="scr'+S.id+'"><summary>📜 Xem script (lời thoại) của '+S.title.split(' · ')[0]+'</summary>'+sc+'</details></section>';
+  });
+  q.innerHTML=h;
+}
+function findItem(n){for(const S of SECS){const it=S.items.find(i=>i.n===n);if(it)return it}}
+function secOf(n){return SECS.find(S=>S.items.some(i=>i.n===n))}
+
+/* ═══════════ TRẢ LỜI ═══════════ */
+function settle(n,ok,val){A[n]={ok,done:true,val};ok?sOK():sBAD();updateUI();}
+function pick(n,i){
+  if(A[n]||submitted)return;
+  const it=findItem(n),S=secOf(n),cnt=(S.type==="pic"?it.imgs:it.opts).length,ok=i===it.ans;
+  for(let k=0;k<cnt;k++){const b=$("o"+n+"_"+k);b.disabled=true;if(k===it.ans)b.classList.add("good");else if(k===i)b.classList.add("bad");else b.classList.add("dim");}
+  const fb=$("fb"+n);fb.className="fb "+(ok?"ok":"no");fb.textContent=ok?"✅ Chính xác!":"❌ Chưa đúng. Đáp án là "+L[it.ans]+".";
+  $("ex"+n).classList.add("show");settle(n,ok,L[i]);
+}
+function pickMatch(n,sel){
+  if(A[n]||submitted||sel.value==="")return;
+  const it=findItem(n),i=+sel.value,ok=i===it.ans;sel.disabled=true;sel.className=ok?"good":"bad";
+  const fb=$("fb"+n);fb.className="fb "+(ok?"ok":"no");fb.textContent=ok?"✅ Chính xác!":"❌ Chưa đúng. Đáp án: "+L[it.ans]+". "+CLUBS[it.ans];
+  $("ex"+n).classList.add("show");settle(n,ok,L[i]);
+}
+function checkGap(n){
+  if(A[n])return;
+  const S=SECS[1],it=S.items.find(i=>i.n===n),inp=$("gi"+n),raw=inp.value;
+  const v=raw.trim().toLowerCase().replace(/\s+/g," ");
+  if(!v&&!submitted){inp.focus();return;}
+  const ok=it.ok(v);inp.readOnly=true;inp.className="gi "+(ok?"ok":"no");$("ck"+n).disabled=true;
+  const fb=$("fb"+n);
+  if(ok){fb.className="fb ok";fb.textContent=" ✅ Chính xác!";}
+  else{fb.className="fb no";fb.innerHTML=' ❌ <span class="ansbox">Đáp án: '+esc(it.show)+'</span>'+(it.hint&&it.hint[v]?' <br>'+it.hint[v]:'');}
+  $("ex"+n).classList.add("show");settle(n,ok,raw.trim());
+}
+
+/* ═══════════ TIẾN ĐỘ & ÂM THANH ═══════════ */
+function updateUI(){
+  const done=Object.keys(A).length,sc=Object.values(A).filter(a=>a.ok).length,p=done/TOTAL*100;
+  $("scoreChip").textContent="⭐ "+sc;$("progChip").textContent=done+"/"+TOTAL;
+  $("pfill").style.width=p+"%";$("pnote").style.left=p+"%";
+  const idx=done===0?0:Math.min(5,1+Math.floor((done-1)/5));window.__rmbSet&&window.__rmbSet(idx);
+}
+let AC=null;
+function ac(){if(!AC){try{AC=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}}if(AC&&AC.state==="suspended")AC.resume();return AC}
+function tone(f,t0,d,ty,v){const c=ac();if(!c)return;const o=c.createOscillator(),g=c.createGain(),t=c.currentTime+t0;o.type=ty;o.frequency.value=f;o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.0008,t+d);o.start(t);o.stop(t+d+.05)}
+function sOK(){[660,880,1175,1320].forEach((f,i)=>tone(f,i*.07,.4,"sine",.12))}
+function sBAD(){tone(330,0,.25,"triangle",.11);tone(247,.14,.35,"triangle",.11)}
+function sWin(){[523,659,784,1047,784,1047,1319].forEach((f,i)=>tone(f,i*.1,.5,"sine",.12))}
+/* chỉ phát một audio một lúc */
+document.addEventListener("play",e=>{document.querySelectorAll("audio").forEach(a=>{if(a!==e.target)a.pause()})},true);
+
+/* lời nhắc */
+(function(){const t=$("rmbTxt"),ic=$("rmbIc");let k=0;
+  function go(){t.style.animation="none";void t.offsetWidth;t.style.animation="";t.innerHTML=REM[k][1];ic.textContent=REM[k][0];k=(k+1)%REM.length}
+  go();window.__rmbT=setInterval(go,5200);
+  window.__rmbSet=function(j){j=Math.min(j,5);if(k===(j+1)%REM.length)return;k=j;clearInterval(window.__rmbT);go();window.__rmbT=setInterval(go,7000)};})();
+function toggleRmb(){const b=$("rmbBox"),m=$("rmbMin");b.classList.toggle("mini");const mini=b.classList.contains("mini");m.textContent=mini?"+":"–";fitTb()}
+function fitTb(){document.documentElement.style.setProperty("--tbh",($("tb").offsetHeight+10)+"px")}
+addEventListener("resize",fitTb);
+
+/* nốt nhạc bay */
+(function(){const d=$("deco"),E=["♪","♫","♩","♬","🎨","🎻"],n=innerWidth<600?8:16;
+  for(let i=0;i<n;i++){const e=document.createElement("div");e.className="note";e.textContent=E[i%E.length];const z=24+Math.random()*30;
+    e.style.cssText="left:"+(Math.random()*96)+"%;font-size:"+z+"px;animation-duration:"+(18+Math.random()*20).toFixed(1)+"s;animation-delay:-"+(Math.random()*30).toFixed(1)+"s";d.appendChild(e)}})();
+
+/* ═══════════ BẮT ĐẦU / NỘP BÀI ═══════════ */
+function startQuiz(){
+  const n=$("inName").value.trim().replace(/\s+/g," "),c=$("inClass").value.trim();
+  if(n.length<2){$("gateErr").textContent="Con hãy nhập họ và tên.";$("inName").focus();return}
+  if(!c){$("gateErr").textContent="Con hãy nhập lớp.";$("inClass").focus();return}
+  student={name:n,cls:c};tStart=Date.now();$("gate").classList.remove("show");try{ac()}catch(e){}fitTb();
+}
+function trySubmit(){
+  if(submitted)return showRes();
+  const left=TOTAL-Object.keys(A).length;
+  if(left>0&&!confirm("Con còn "+left+" câu chưa làm. Những câu này sẽ tính là sai. Con vẫn muốn nộp bài chứ?"))return;
+  submit();
+}
+function submit(){
+  // chấm nốt các ô điền chưa kiểm tra
+  SECS[1].items.forEach(it=>{if(!A[it.n]){const inp=$("gi"+it.n);submitted=false;const raw=inp.value.trim().toLowerCase().replace(/\s+/g," ");const ok=!!raw&&it.ok(raw);inp.readOnly=true;inp.className="gi "+(ok?"ok":"no");$("ck"+it.n).disabled=true;const fb=$("fb"+it.n);if(ok){fb.className="fb ok";fb.textContent=" ✅ Chính xác!"}else{fb.className="fb no";fb.innerHTML=' ❌ <span class="ansbox">Đáp án: '+esc(it.show)+'</span>'}$("ex"+it.n).classList.add("show");A[it.n]={ok,done:true,val:inp.value.trim()};}});
+  submitted=true;
+  document.querySelectorAll(".opt,.ck").forEach(b=>b.disabled=true);document.querySelectorAll("select").forEach(s=>s.disabled=true);
+  document.querySelectorAll(".scr").forEach(d=>d.classList.add("show"));
+  document.querySelectorAll("audio").forEach(a=>a.pause());
+  updateUI();$("submitBtn").textContent="📊 Xem lại kết quả";
+  showRes();sWin();
+  lastPayload=buildPayload();try{localStorage.setItem("u4_pending",JSON.stringify(lastPayload))}catch(e){}
+  sendMail();
+}
+function scoreInfo(){
+  const per=SECS.map(S=>S.items.filter(it=>A[it.n]&&A[it.n].ok).length);
+  const sc=per.reduce((a,b)=>a+b,0);return{per,sc,ten:Math.round(sc/TOTAL*100)/10};
+}
+function showRes(){
+  const r=scoreInfo();
+  $("resWho").textContent=student.name+" · Lớp "+student.cls;
+  $("resScore").textContent=r.sc+"/"+TOTAL;$("resTen").textContent=r.ten.toString().replace(".",",")+" / 10 điểm";
+  $("resBreak").innerHTML=r.per.map((p,i)=>"<div>Part "+(i+1)+"<b>"+p+"/5</b></div>").join("");
+  let em="💖",msg="Đừng nản nhé con! Đọc kỹ lời giải, nghe lại từng đoạn rồi làm lại — lần sau chắc chắn tiến bộ.";
+  if(r.sc>=23){em="🏆";msg="Xuất sắc! Đôi tai của con thật “nhạy”. Cô tự hào về con lắm!"}
+  else if(r.sc>=19){em="🌟";msg="Rất tốt! Con xem lại vài câu sai và nghe lại đoạn đó nhé."}
+  else if(r.sc>=13){em="💪";msg="Khá rồi đó! Đọc phần “Trong bài nghe” của các câu sai rồi làm lại một lượt nha."}
+  $("resEm").textContent=em;$("resNote").textContent=msg;$("resOv").classList.add("show");
+}
+function closeRes(){$("resOv").classList.remove("show")}
+
+/* ═══════════ GỬI BÀI VỀ EMAIL CỦA CÔ ═══════════ */
+function buildPayload(){
+  const r=scoreInfo(),secs=Math.round((Date.now()-tStart)/1000),mm=Math.floor(secs/60),ss=String(secs%60).padStart(2,"0");
+  const when=new Date().toLocaleString("vi-VN");
+  let m="BÀI NGHE UNIT 4 – MUSIC AND ARTS\n";
+  m+="Học sinh: "+student.name+"\nLớp: "+student.cls+"\nNộp lúc: "+when+"\nThời gian làm: "+mm+" phút "+ss+" giây\n";
+  m+="ĐIỂM: "+r.sc+"/"+TOTAL+"  ("+r.ten+"/10)\n";
+  m+="Theo phần: "+r.per.map((p,i)=>"Part "+(i+1)+": "+p+"/5").join(" | ")+"\n\nCHI TIẾT TỪNG CÂU\n";
+  SECS.forEach(S=>{m+="\n— Part "+S.id+" —\n";S.items.forEach(it=>{
+    const a=A[it.n];let st=a?(a.ok?"ĐÚNG":"SAI"):"CHƯA LÀM",ans=a&&a.val?a.val:"(trống)",key;
+    if(S.type==="gap")key=it.show;else if(S.type==="match")key=L[it.ans]+". "+CLUBS[it.ans];else key=L[it.ans];
+    if(S.type==="match"&&a&&a.val)ans=a.val+". "+CLUBS[L.indexOf(a.val)];
+    m+="Câu "+it.n+(S.type==="match"?" ("+it.name+")":"")+": "+st+"  | Con chọn/viết: "+ans+"  | Đáp án: "+key+"\n";});});
+  return{access_key:CFG.MAIL_ACCESS_KEY,subject:"[Nghe Unit 4] "+student.name+" – Lớp "+student.cls+" – "+r.sc+"/"+TOTAL,from_name:"Bài nghe Unit 4 – "+student.name,
+    name:student.name,class:student.cls,score:r.sc+"/"+TOTAL+" ("+r.ten+"/10)",message:m};
+}
+function setMail(cls,html){const e=$("mailSt");e.className="mail "+cls;e.innerHTML=html}
+const keyOK=()=>CFG.MAIL_ACCESS_KEY&&!/PASTE_ACCESS_KEY/.test(CFG.MAIL_ACCESS_KEY);
+async function postOnce(p){
+  const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),20000);
+  try{
+    const res=await fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(p),signal:ctl.signal});
+    let j={};try{j=await res.json()}catch(e){}
+    if(res.ok&&j.success)return{ok:true};
+    return{ok:false,msg:j.message||("Mã lỗi "+res.status),fatal:res.status===400||res.status===403||res.status===401};
+  }catch(e){return{ok:false,msg:e.name==="AbortError"?"Hết thời gian chờ":"Không có kết nối mạng"}}
+  finally{clearTimeout(to)}
+}
+let sending=false;
+async function sendMail(){
+  if(sending||mailSent)return;
+  if(!keyOK()){setMail("err","⚠️ Trang chưa được cài địa chỉ nhận bài của cô nên bài chưa gửi được. Con hãy báo cô nhé.");return}
+  sending=true;setMail("wait","⏳ Đang gửi bài cho cô… (con đừng đóng trang nhé)");
+  let last;
+  for(let t=0;t<3;t++){
+    last=await postOnce(lastPayload);
+    if(last.ok||last.fatal)break;
+    await new Promise(r=>setTimeout(r,1500*(t+1)));
+  }
+  sending=false;
+  if(last.ok){mailSent=true;try{localStorage.removeItem("u4_pending")}catch(e){}setMail("ok","✅ Bài làm của con đã được gửi đến cô. Con không cần làm gì thêm!");}
+  else setMail("err","⚠️ Chưa gửi được ("+esc(last.msg)+"). Con kiểm tra mạng rồi bấm gửi lại, đừng đóng trang nhé.<br><button class='btn b3' onclick='sendMail()'>📨 Gửi lại cho cô</button>");
+}
+function resendPending(){
+  try{lastPayload=JSON.parse(localStorage.getItem("u4_pending"));}catch(e){lastPayload=null}
+  if(!lastPayload)return;
+  $("pending").classList.remove("show");
+  $("resWho").textContent=lastPayload.name+" · Lớp "+lastPayload.class;$("resScore").textContent=lastPayload.score.split(" ")[0];$("resTen").textContent="";$("resBreak").innerHTML="";$("resNote").textContent="Gửi lại bài làm trước đó.";$("resEm").textContent="📨";
+  $("resOv").classList.add("show");sendMail();
+}
+addEventListener("beforeunload",e=>{if(submitted&&!mailSent&&keyOK()){e.preventDefault();e.returnValue=""}});
+
+/* khởi động */
+build();updateUI();if(innerWidth<600)toggleRmb();
+if(!keyOK())$("cfgWarn").style.display="block";
+try{if(localStorage.getItem("u4_pending"))$("pending").classList.add("show")}catch(e){}
+$("inName").focus();
+</script>
+</body>
+</html>
