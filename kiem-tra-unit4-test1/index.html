@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kiểm tra Unit 4 · Test 01 · English 7</title>
+<style>
+:root{--ink:#1d2433;--mu:#5b6478;--line:#d9dde6;--bg:#f3f1ea;--paper:#fff;--blue:#1f4fb4;--ok:#0f8a5f;--no:#c62f4f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Times New Roman",Times,Georgia,serif;font-size:17.5px;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:18px 14px 90px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:22px 26px;margin-bottom:16px;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.head{text-align:center;border-bottom:2px double var(--ink);padding-bottom:12px;margin-bottom:12px}
+.head h1{margin:0;font-size:1.5rem;letter-spacing:.02em;text-transform:uppercase}.head p{margin:4px 0 0;color:var(--mu);font-style:italic}
+.info{display:grid;grid-template-columns:auto 1fr auto 140px;gap:8px 10px;align-items:center;font-family:system-ui,sans-serif;font-size:.95rem}
+input[type=text]{font:inherit;font-family:system-ui,sans-serif;padding:7px 10px;border:1px solid var(--ink);border-radius:4px;min-width:0;width:100%}
+.bar{position:sticky;top:0;z-index:10;background:var(--bg);padding:8px 0;margin-bottom:6px;display:flex;justify-content:space-between;gap:10px;font-family:system-ui,sans-serif;font-size:.9rem;font-weight:600}
+.bar span:last-child{color:var(--blue)}
+.inst{font-weight:700;color:var(--blue);margin:22px 0 8px;font-size:1.02rem}
+.pas{padding:12px 16px;margin:6px 0 12px;border:1px solid var(--ink);border-radius:2px;background:#fcfcf8;font-size:1rem}
+.pas h4{margin:0 0 6px;text-align:center}.pas p{margin:6px 0}.pas .ph{padding:6px 10px;background:#f1efe6}
+.pas .bl{font-weight:700}
+.q{padding:10px 0;border-top:1px dotted var(--line)}
+.qt{font-weight:700}.qt .n{display:inline-block;min-width:2.2em}
+.pic{display:block;max-width:100%;max-height:150px;margin:8px 0;border:1px solid var(--ink)}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:4px 18px;margin:6px 0 0 2.2em}
+.op{display:flex;gap:8px;align-items:flex-start;text-align:left;font:inherit;color:var(--ink);background:none;border:0;border-radius:4px;padding:3px 6px;cursor:pointer;min-width:0;overflow-wrap:anywhere}
+.op .l{flex:none;width:26px;height:26px;border:1.5px solid var(--ink);border-radius:50%;display:grid;place-items:center;font:700 .85rem system-ui,sans-serif}
+.op:hover:not(:disabled){background:#eef2fb}
+.op.picked .l{background:var(--blue);border-color:var(--blue);color:#fff}
+.op.good .l{background:var(--ok);border-color:var(--ok);color:#fff}.op.good{background:#e4f6ee}
+.op.bad .l{background:var(--no);border-color:var(--no);color:#fff}.op.bad{background:#fde8ed}
+.exp{display:none;margin:8px 0 0 2.2em;padding:8px 12px;border-left:4px solid var(--blue);background:#eef2fb;font-family:system-ui,sans-serif;font-size:.92rem}.exp.on{display:block}
+.exp.ok{border-color:var(--ok);background:#e4f6ee}.exp.no{border-color:var(--no);background:#fde8ed}
+.fin{text-align:center;margin-top:20px;font-family:system-ui,sans-serif}
+.btn{font:700 1rem system-ui,sans-serif;padding:12px 26px;border:0;border-radius:6px;background:var(--blue);color:#fff;cursor:pointer}
+.btn.w{background:#fff;color:var(--ink);border:1px solid var(--ink)}
+#warn{min-height:1.4em;color:#9a5b00;font-weight:600;margin-bottom:8px}#warn.err{color:var(--no)}
+.res{display:none}.res.on{display:block}
+.res .big{font:700 3rem system-ui,sans-serif;color:var(--blue);text-align:center;line-height:1.1}.res .ten{text-align:center;font:600 1.1rem system-ui,sans-serif;margin-bottom:10px}
+.brk{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-family:system-ui,sans-serif;font-size:.92rem;margin:10px 0}.brk div{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:3px 0}
+.mail{margin:10px 0;padding:10px 12px;border:1px solid var(--line);border-radius:6px;font-family:system-ui,sans-serif;font-size:.93rem;font-weight:600;background:#fafafa}.mail.ok{background:#e4f6ee}.mail.err{background:#fff3d6}
+button:focus-visible,input:focus-visible{outline:3px solid #f5a524;outline-offset:2px}
+@media(max-width:620px){.sheet{padding:16px 14px}.info{grid-template-columns:auto 1fr}.opts{grid-template-columns:1fr;margin-left:0}.exp{margin-left:0}body{font-size:16.5px}.brk{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="sheet">
+  <div class="head"><h1 id="tt"></h1><p id="ts"></p></div>
+  <div class="info"><label for="nm">Họ và tên:</label><input id="nm" type="text" autocomplete="name"><label for="cl">Lớp:</label><input id="cl" type="text" autocomplete="off"></div>
+</div>
+<div class="bar"><span id="cnt">Đã làm 0/40</span><span>Ms. Kim Anh</span></div>
+<div class="sheet" id="quiz"></div>
+<div class="fin"><div id="warn"></div><button class="btn" id="sub" type="button">Nộp bài</button></div>
+<div class="sheet res" id="res">
+  <div class="big" id="rb"></div><div class="ten" id="rt"></div><div id="rw" style="text-align:center;color:var(--mu);font-family:system-ui,sans-serif"></div>
+  <div class="brk" id="rk"></div><div class="mail" id="mail"></div>
+  <div style="text-align:center"><button class="btn w" id="cp" type="button">Sao chép kết quả</button> <button class="btn" id="top" type="button">Xem lại bài &amp; giải thích</button></div>
+</div>
+</div>
+<script src="config.js"></script><script src="data.js"></script>
+<script>
+const $=id=>document.getElementById(id),CFG=window.QUIZ_CONFIG||{},TEST=window.TEST,QS=TEST.q,TOTAL=QS.length,LT='ABCD';
+$('tt').textContent='Grade 7 – '+TEST.title+' ('+TEST.sub+')';$('ts').textContent='Choose the correct answer A, B, C or D for each question.';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const sel={};let graded=false,confirmed=false,T0=Date.now(),tEnd=0,mailSent=false,sending=false,payload=null;
+(function(){let g='',h='';
+ QS.forEach(q=>{const G=TEST.groups[q.g];
+  if(q.g!==g){g=q.g;const nums=QS.filter(x=>x.g===g).map(x=>x.n);h+='<div class="inst">'+(nums.length>1?'Questions '+nums[0]+'–'+nums[nums.length-1]:'Question '+nums[0])+': '+G.inst+'</div>'+(G.passage?'<div class="pas">'+G.passage.replace(/class="bl" data-b="\d+"/g,'class="bl"')+'</div>':'');}
+  h+='<div class="q" id="q'+q.n+'"><div class="qt"><span class="n">'+q.n+'.</span>'+q.q+'</div>'+(q.img?'<img class="pic" src="'+q.img+'" alt="Biển báo">':'')+
+   '<div class="opts">'+q.o.map((t,i)=>'<button type="button" class="op" data-q="'+q.n+'" data-i="'+i+'"><span class="l">'+LT[i]+'</span><span>'+t+'</span></button>').join('')+'</div><div class="exp" id="e'+q.n+'"></div></div>';});
+ $('quiz').innerHTML=h;
+ document.querySelectorAll('.op').forEach(b=>b.onclick=()=>{if(graded)return;const n=+b.dataset.q;sel[n]=+b.dataset.i;
+  document.querySelectorAll('.op[data-q="'+n+'"]').forEach(x=>x.classList.toggle('picked',x===b));$('cnt').textContent='Đã làm '+Object.keys(sel).length+'/'+TOTAL;});
+})();
+function grade(){
+  graded=true;tEnd=Date.now();let ok=0;const by={};
+  QS.forEach(q=>{const j=sel[q.n],has=j!==undefined,good=has&&j===q.c;if(good)ok++;const b=by[q.g]||(by[q.g]={t:0,ok:0});b.t++;if(good)b.ok++;
+   document.querySelectorAll('.op[data-q="'+q.n+'"]').forEach(x=>{x.disabled=true;const i=+x.dataset.i;x.classList.remove('picked');if(i===q.c)x.classList.add('good');else if(has&&i===j)x.classList.add('bad');});
+   const e=$('e'+q.n);e.className='exp on '+(good?'ok':'no');e.innerHTML='<b>'+(good?'Đúng.':has?'Chưa đúng.':'Chưa làm.')+'</b> Đáp án: <b>'+LT[q.c]+'</b>. '+q.e;});
+  return{ok,by};
+}
+const fmt=s=>Math.floor(s/60)+' phút '+String(s%60).padStart(2,'0')+' giây';
+function text(R){
+  let m='KIỂM TRA '+TEST.title.toUpperCase()+' ('+TEST.sub+')\nHọc sinh: '+$('nm').value.trim()+'\nLớp: '+$('cl').value.trim()+'\nNộp lúc: '+new Date().toLocaleString('vi-VN')+'\nThời gian làm: '+fmt(Math.round((tEnd-T0)/1000))+'\nĐIỂM: '+R.ok+'/'+TOTAL+' ('+(R.ok*10/TOTAL).toFixed(2).replace(/\.?0+$/,'')+'/10)\n\nTheo phần:\n';
+  Object.keys(TEST.groups).forEach(k=>{m+='- '+TEST.groups[k].short+': '+R.by[k].ok+'/'+R.by[k].t+'\n';});
+  m+='\nCHI TIẾT TỪNG CÂU\n';QS.forEach(q=>{const j=sel[q.n];m+='Câu '+q.n+': '+(j===undefined?'CHƯA LÀM':j===q.c?'ĐÚNG':'SAI | con chọn '+LT[j]+' | đáp án '+LT[q.c])+'\n';});return m;
+}
+function setMail(c,h){const e=$('mail');e.className='mail '+c;e.innerHTML=h;}
+async function post(p){const ctl=new AbortController(),to=setTimeout(()=>ctl.abort(),20000);
+ try{const r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(p),signal:ctl.signal});let j={};try{j=await r.json();}catch(e){}
+  if(r.ok&&j.success)return{ok:true};return{ok:false,msg:j.message||('Mã lỗi '+r.status),fatal:[400,401,403].includes(r.status)};
+ }catch(e){return{ok:false,msg:e.name==='AbortError'?'Hết thời gian chờ':'Không có kết nối mạng'};}finally{clearTimeout(to);}}
+async function sendMail(){
+  if(sending||mailSent)return;
+  if(!CFG.MAIL_ACCESS_KEY||/PASTE_ACCESS_KEY/.test(CFG.MAIL_ACCESS_KEY)){setMail('err','Trang chưa cài địa chỉ nhận bài. Con bấm “Sao chép kết quả” rồi gửi cô qua Zalo nhé.');return;}
+  sending=true;setMail('','Đang gửi bài cho cô… (con đừng đóng trang nhé)');let last;
+  for(let t=0;t<3;t++){last=await post(payload);if(last.ok||last.fatal)break;if(t<2)await new Promise(r=>setTimeout(r,1500*(t+1)));}
+  sending=false;
+  if(last.ok){mailSent=true;setMail('ok','✅ Bài làm của con đã được gửi đến cô. Con không cần làm gì thêm!');}
+  else{setMail('err','⚠️ Chưa gửi được ('+esc(last.msg)+'). Con kiểm tra mạng rồi bấm gửi lại, hoặc sao chép kết quả gửi cô qua Zalo.<br><button class="btn" type="button" id="rs" style="margin-top:8px;padding:8px 16px">Gửi lại cho cô</button>');$('rs').onclick=sendMail;}
+}
+$('sub').onclick=function(){
+  if(graded)return;const w=$('warn');
+  if(!$('nm').value.trim()||!$('cl').value.trim()){w.className='err';w.textContent='Con hãy nhập Họ tên và Lớp ở đầu bài trước khi nộp.';$('nm').focus();window.scrollTo({top:0,behavior:'smooth'});return;}
+  const left=TOTAL-Object.keys(sel).length;
+  if(left>0&&!confirmed){confirmed=true;w.className='';w.textContent='Con còn '+left+' câu chưa làm. Bấm “Nộp bài” lần nữa nếu muốn nộp luôn.';return;}
+  w.textContent='';const R=grade(),ten=(R.ok*10/TOTAL).toFixed(2).replace(/\.?0+$/,'');
+  $('rb').textContent=R.ok+'/'+TOTAL;$('rt').textContent=ten+' / 10 điểm';$('rw').textContent=$('nm').value.trim()+' · Lớp '+$('cl').value.trim()+' · '+fmt(Math.round((tEnd-T0)/1000));
+  $('rk').innerHTML=Object.keys(TEST.groups).map(k=>'<div><span>'+TEST.groups[k].short+'</span><b>'+R.by[k].ok+'/'+R.by[k].t+'</b></div>').join('');
+  $('res').classList.add('on');$('sub').disabled=true;$('sub').textContent='Đã nộp';$('res').scrollIntoView({behavior:'smooth'});
+  const nm=$('nm').value.trim(),cl=$('cl').value.trim();
+  payload={access_key:CFG.MAIL_ACCESS_KEY,subject:'['+TEST.title+'] '+nm+' – Lớp '+cl+' – '+R.ok+'/'+TOTAL,from_name:'Kiểm tra Unit 4 – '+nm,name:nm,class:cl,score:R.ok+'/'+TOTAL+' ('+ten+'/10)',message:text(R)};
+  sendMail();
+};
+$('top').onclick=()=>$('quiz').scrollIntoView({behavior:'smooth'});
+$('cp').onclick=()=>{const t=payload?payload.message:'',done=()=>{$('cp').textContent='Đã sao chép';};try{navigator.clipboard.writeText(t).then(done,()=>{});}catch(e){}};
+</script>
+</body>
+</html>
