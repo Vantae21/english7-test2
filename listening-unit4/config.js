@@ -4,5 +4,5 @@
    → mã (dạng xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx) sẽ được gửi về email đó.
    Dán mã vào giữa hai dấu nháy kép bên dưới rồi lưu (Commit) lại là xong. */
 window.QUIZ_CONFIG = {
-  MAIL_ACCESS_KEY: "PASTE_ACCESS_KEY_HERE"
+  MAIL_ACCESS_KEY: "8758c8c4-5e31-4cf1-a68d-34735085d2e7"
 };
